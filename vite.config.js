@@ -7,6 +7,17 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         design: resolve(__dirname, 'design.html'),
+        howItWorks: resolve(__dirname, 'how-it-works.html'),
+        chatgptAds: resolve(__dirname, 'chatgpt-ads.html'),
+        opportunity: resolve(__dirname, 'opportunity.html'),
+        about: resolve(__dirname, 'about.html'),
+        insights: resolve(__dirname, 'insights.html'),
+        contact: resolve(__dirname, 'contact.html'),
+        industries: resolve(__dirname, 'industries/index.html'),
+        industriesDental: resolve(__dirname, 'industries/dental.html'),
+        industriesHomeServices: resolve(__dirname, 'industries/home-services.html'),
+        industriesAutomotive: resolve(__dirname, 'industries/automotive.html'),
+        industriesMedSpa: resolve(__dirname, 'industries/med-spa.html')
       },
     },
   },

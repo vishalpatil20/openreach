@@ -3,65 +3,641 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>openreach.agency — Customer Acquisition</title>
+  <title>openreach.agency — Customer Acquisition at the Moment of Intent</title>
   <link rel="stylesheet" href="/style.css">
 </head>
-<body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+<body>
 
-  <!-- Ambient Background -->
+  <!-- Ambient Environment -->
   <div class="bg-ambient-layer">
-    <div class="bg-fine-grid" id="fineGrid"></div>
-    <div class="bg-noise-texture" id="noiseTexture"></div>
+    <div class="bg-fine-grid"></div>
+    <div class="bg-noise-texture"></div>
   </div>
 
   <!-- Header Navigation -->
-  <nav style="border-bottom: 1px solid var(--color-border); background-color: transparent;">
+  <nav style="position: sticky; top: 0; background-color: rgba(246, 243, 236, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100;">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center; height: 72px;">
-      <a href="#" style="font-family: var(--font-display); font-size: 24px; text-decoration: none; color: var(--color-ink); display: flex; align-items: center; gap: 8px; font-weight: 500;">
+      <a href="/" style="font-family: var(--font-display); font-size: 24px; text-decoration: none; color: var(--color-ink); display: flex; align-items: center; gap: 8px; font-weight: 500;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-copper)" stroke-width="2" style="transform: rotate(-15deg);">
           <path d="M2 12h20M12 2v20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"></path>
         </svg>
         openreach.agency
       </a>
-      <div>
-        <a href="/design" class="btn btn-secondary" style="height: 38px; font-size: 13px;">View Design System &rarr;</a>
+      <ul style="display: flex; gap: var(--space-6); list-style: none;" class="nav-links">
+        <li><a href="/how-it-works" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Methodology</a></li>
+        <li><a href="/industries" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Industries</a></li>
+        <li><a href="/chatgpt-ads" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">ChatGPT Ads</a></li>
+        <li><a href="/about" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Philosophy</a></li>
+        <li><a href="/insights" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Insights</a></li>
+      </ul>
+      <div style="display: flex; align-items: center; gap: var(--space-4);">
+        <a href="/opportunity" class="btn btn-secondary" style="height: 38px; padding: 0 var(--space-3); font-size: 13px;" id="navAuditBtn">See Your Opportunity</a>
       </div>
     </div>
   </nav>
 
-  <!-- Editorial Coming Soon Content -->
-  <main class="container" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: var(--space-8) var(--space-5);">
-    <div style="max-width: 680px; text-align: center;">
-      <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-copper); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: var(--space-3);">CALM ACQUISITION / 01</span>
-      <h1 class="font-display-xl" style="color: var(--color-forest); margin-bottom: var(--space-4); font-size: 4.5rem; line-height: 0.95;">
-        Your next customer is already looking.
-      </h1>
-      <p class="font-body-lg" style="color: var(--color-dark-gray); margin-bottom: var(--space-6); font-size: 19px;">
-        We help high-value local businesses turn emerging AI conversations and search signals into measurable customer acquisition.
+  <!-- Hero Section -->
+  <header style="padding: var(--space-12) 0 var(--space-8) 0; background-color: var(--color-paper); border-bottom: 1px solid var(--color-border);">
+    <div class="container" style="max-width: 800px; text-align: center;">
+      <span style="font-family: var(--font-mono); font-size: 12px; color: var(--color-copper); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: var(--space-3);">CUSTOMER INTELLIGENCE / 01</span>
+      <h1 class="font-display-xl" style="color: var(--color-forest); margin-bottom: var(--space-4);">Your next customer is already looking.</h1>
+      <p class="font-body-lg" style="color: var(--color-dark-gray); max-width: 680px; margin: 0 auto var(--space-6) auto;">
+        People are asking AI what to buy, who to trust, and where to go. We help local businesses show up at the moment that intent becomes action.
       </p>
 
       <!-- The Signal Line Motif -->
-      <div class="signal-line-wrapper" style="max-width: 320px; margin: 0 auto var(--space-6) auto;">
+      <div class="signal-line-wrapper" style="max-width: 480px; margin: 0 auto var(--space-6) auto;">
         <div class="signal-line-path"></div>
-        <div class="signal-line-dot" id="comingSoonDot" style="left: 0%;"></div>
+        <div class="signal-line-dot" id="signalLineDot" style="left: 0%;"></div>
       </div>
 
-      <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-2);">
-        <span class="font-mono" style="font-size: 13px; color: var(--color-mid-gray);">COMING LATE AUTUMN 2026</span>
-        <a href="mailto:intelligence@openreach.agency" class="btn btn-primary" id="comingSoonCta" style="margin-top: var(--space-2);">Get in touch &rarr;</a>
+      <div style="display: flex; justify-content: center; gap: var(--space-4); margin-bottom: var(--space-8);">
+        <a href="/opportunity" class="btn btn-primary" id="heroBtn1">See your opportunity &rarr;</a>
+        <a href="/how-it-works" class="btn btn-secondary">How it works</a>
+      </div>
+
+      <!-- Hero Prompt Visual -->
+      <div class="prompt-card" style="text-align: left; max-width: 600px; margin: 0 auto;">
+        <div class="prompt-card-title">CUSTOMER SIGNAL (ILLUSTRATIVE EXAMPLE)</div>
+        <div class="prompt-card-body" style="font-size: 18px; margin-bottom: var(--space-4);">
+          "I need a reliable roofing company in Austin. How much should a roof replacement cost?"
+        </div>
+        <div class="prompt-card-meta" style="padding: var(--space-2) var(--space-3);">
+          <div class="prompt-meta-item">
+            <span class="prompt-meta-label">Intent</span>
+            <span class="prompt-meta-val" style="color: var(--color-success);">HIGH</span>
+          </div>
+          <div class="prompt-meta-item">
+            <span class="prompt-meta-label">Location</span>
+            <span class="prompt-meta-val">AUSTIN, TX</span>
+          </div>
+          <div class="prompt-meta-item">
+            <span class="prompt-meta-label">Category</span>
+            <span class="prompt-meta-val">ROOFING</span>
+          </div>
+          <div class="prompt-meta-item">
+            <span class="prompt-meta-label">Stage</span>
+            <span class="prompt-meta-val">COMPARISON</span>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
+  </header>
+
+  <!-- Section 02: The Shift -->
+  <section id="the-shift" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">02 / MARKET DYNAMICS</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">Search is changing.</h2>
+        </div>
+        <div class="col-8">
+          <p class="font-body-lg" style="margin-bottom: var(--space-5); color: var(--color-dark-gray);">
+            AI assistants are becoming another place where people research decisions. Instead of guessing keywords, customers describe their problems in natural language.
+          </p>
+          <div style="display: flex; gap: var(--space-4); overflow-x: auto; padding-bottom: var(--space-3);">
+            <div class="card" style="flex: 1; min-width: 140px; text-align: center; padding: var(--space-4);">
+              <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">STAGE 01</span>
+              <h5 style="margin-top: var(--space-2);">SEARCH</h5>
+            </div>
+            <div style="display:flex; align-items:center; color: var(--color-stone); font-size:20px;">&rarr;</div>
+            <div class="card" style="flex: 1; min-width: 140px; text-align: center; padding: var(--space-4);">
+              <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">STAGE 02</span>
+              <h5 style="margin-top: var(--space-2);">SOCIAL</h5>
+            </div>
+            <div style="display:flex; align-items:center; color: var(--color-stone); font-size:20px;">&rarr;</div>
+            <div class="card" style="flex: 1; min-width: 140px; text-align: center; padding: var(--space-4);">
+              <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">STAGE 03</span>
+              <h5 style="margin-top: var(--space-2);">MAPS</h5>
+            </div>
+            <div style="display:flex; align-items:center; color: var(--color-stone); font-size:20px;">&rarr;</div>
+            <div class="card" style="flex: 1; min-width: 140px; text-align: center; padding: var(--space-4); border-color: var(--color-copper);">
+              <span class="font-mono" style="font-size: 11px; color: var(--color-copper);">CURRENT</span>
+              <h5 style="margin-top: var(--space-2); color: var(--color-forest);">AI SEARCH</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 03: The Signal -->
+  <section id="the-signal" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border); background-color: var(--color-paper);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">03 / CUSTOMER SIGNAL</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">The signal is in the question.</h2>
+        </div>
+        <div class="col-8">
+          <p class="font-body" style="margin-bottom: var(--space-6); color: var(--color-dark-gray);">
+            Customers reveal their intent through the questions they ask. We divide these journeys into three distinct, actionable stages:
+          </p>
+          <div class="grid-12" style="margin-bottom: var(--space-6);">
+            <div class="col-4 card" style="padding: var(--space-4);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">STAGE 1 // RESEARCH</span>
+              <p class="font-body-sm" style="margin-top: var(--space-2);">"What treatment is best for cosmetic tooth alignment?"</p>
+            </div>
+            <div class="col-4 card" style="padding: var(--space-4);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">STAGE 2 // COMPARISON</span>
+              <p class="font-body-sm" style="margin-top: var(--space-2);">"Which option is better: implants or bridges?"</p>
+            </div>
+            <div class="col-4 card" style="padding: var(--space-4);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">STAGE 3 // DECISION</span>
+              <p class="font-body-sm" style="margin-top: var(--space-2);">"Who should I choose for dental implants in Seattle?"</p>
+            </div>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-card-title">LIVE INTENT CAPTURE (ILLUSTRATIVE EXAMPLE)</div>
+            <div class="prompt-card-body" style="font-size: 18px; margin-bottom: var(--space-3);">
+              "I've been having tooth pain for three days. Should I see an emergency dentist?"
+            </div>
+            <div class="prompt-card-meta">
+              <div class="prompt-meta-item">
+                <span class="prompt-meta-label">Category</span>
+                <span class="prompt-meta-val">DENTAL</span>
+              </div>
+              <div class="prompt-meta-item">
+                <span class="prompt-meta-label">Stage</span>
+                <span class="prompt-meta-val">RESEARCH</span>
+              </div>
+              <div class="prompt-meta-item">
+                <span class="prompt-meta-label">Intent</span>
+                <span class="prompt-meta-val" style="color: var(--color-success);">HIGH</span>
+              </div>
+              <div class="prompt-meta-item">
+                <span class="prompt-meta-label">Location</span>
+                <span class="prompt-meta-val">SEATTLE, WA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 04: What We Actually Do -->
+  <section id="what-we-do" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">04 / METHODOLOGY</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">From customer question to customer.</h2>
+        </div>
+        <div class="col-8">
+          <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+            
+            <div style="display: flex; gap: var(--space-4); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 18px; width: 32px;">01</span>
+              <div>
+                <h4 style="color: var(--color-forest); font-size:18px;">DISCOVER</h4>
+                <p class="font-body-sm" style="color: var(--color-dark-gray);">Identify the exact questions your potential customers are asking conversational platforms.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-4); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 18px; width: 32px;">02</span>
+              <div>
+                <h4 style="color: var(--color-forest); font-size:18px;">INTERPRET</h4>
+                <p class="font-body-sm" style="color: var(--color-dark-gray);">Classify buying stage, commercial intent score, location, and precise category mapping.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-4); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 18px; width: 32px;">03</span>
+              <div>
+                <h4 style="color: var(--color-forest); font-size:18px;">POSITION</h4>
+                <p class="font-body-sm" style="color: var(--color-dark-gray);">Author highly contextual, premium message feeds designed for emerging search indexing.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-4); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 18px; width: 32px;">04</span>
+              <div>
+                <h4 style="color: var(--color-forest); font-size:18px;">ACQUIRE</h4>
+                <p class="font-body-sm" style="color: var(--color-dark-gray);">Publish feeds across relevant conversational networks and eligible placements.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: var(--space-4); padding-bottom: var(--space-3);">
+              <span class="font-mono" style="color: var(--color-copper); font-size: 18px; width: 32px;">05</span>
+              <div>
+                <h4 style="color: var(--color-forest); font-size:18px;">MEASURE</h4>
+                <p class="font-body-sm" style="color: var(--color-dark-gray);">Track qualified calls, forms, and client appointments back to the signal source.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 05: ChatGPT Ads -->
+  <section id="chatgpt-ads" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border); background-color: var(--color-paper);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">05 / PLATFORMS</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">The next place your customers may find you.</h2>
+        </div>
+        <div class="col-8">
+          <p class="font-body-lg" style="margin-bottom: var(--space-5); color: var(--color-dark-gray);">
+            ChatGPT is becoming a key avenue where people research problems and decisions. For eligible businesses, conversational advertising offers a direct way to provide context in real-time.
+          </p>
+
+          <!-- Illustrative Sponsored Placement Mockup -->
+          <div class="ad-mockup" style="margin-bottom: var(--space-5);">
+            <div class="ad-context">
+              <strong>User Prompt:</strong> "Where can I get high-end custom wood tables made in Portland?"
+            </div>
+            <div class="font-body-sm" style="color: var(--color-mid-gray); font-style: italic; margin-bottom: var(--space-3);">
+              "For custom wood furniture in the Portland area, here is a recommended local artisan specializing in reclaimed tables..."
+            </div>
+            <div class="ad-sponsored-box">
+              <span class="font-mono" style="font-size: 10px; color: var(--color-copper); font-weight: 600; display: block; margin-bottom: var(--space-1);">SPONSORED PLACEMENT</span>
+              <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-1);">Oak & Steel Craft</h4>
+              <p class="font-body-sm" style="color: var(--color-dark-gray); margin-bottom: var(--space-3);">
+                Handcrafting heirloom-quality dining tables and custom woodwork from local hardwoods.
+              </p>
+              <button class="btn btn-primary" style="height: 38px; font-size: 12px;" disabled>View collections &rarr;</button>
+            </div>
+            <span class="ad-tagline">* Illustrative example of contextual sponsor feed. Not actual OpenAI partnership.</span>
+          </div>
+
+          <p class="font-body-sm" style="color: var(--color-mid-gray); margin-bottom: var(--space-5);">
+            * Advertising eligibility, markets, categories, and placement availability vary by platform policy.
+          </p>
+          <div style="display: flex; gap: var(--space-4);">
+            <a href="/chatgpt-ads" class="btn btn-secondary">Explore ChatGPT Ads &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 06: Who This Is For + Interactive Simulator -->
+  <section id="industries" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper); display: block; margin-bottom: var(--space-3);">06 / SECTOR COMPATIBILITY</span>
+      <h2 class="font-h1" style="color: var(--color-forest); margin-bottom: var(--space-5);">Built for businesses people actually visit.</h2>
+      
+      <!-- Interactive Selector Widget -->
+      <div class="card" style="margin-bottom: var(--space-8);">
+        <h4 class="font-h4" style="margin-bottom: var(--space-3); color: var(--color-forest);">Select your industry to see intent signals:</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5);" id="simulatorTabs">
+          <button class="segment-item active" data-industry="dental">Dental</button>
+          <button class="segment-item" data-industry="hvac">HVAC</button>
+          <button class="segment-item" data-industry="roofing">Roofing</button>
+          <button class="segment-item" data-industry="remodeling">Remodeling</button>
+          <button class="segment-item" data-industry="medspa">Med Spa</button>
+          <button class="segment-item" data-industry="automotive">Automotive</button>
+        </div>
+
+        <div class="prompt-card" style="border: 1px solid var(--color-border);">
+          <div class="prompt-card-title">ILLUSTRATIVE INTENT SIGNAL</div>
+          <div class="prompt-card-body" id="simQuestionText" style="font-size: 18px; margin-bottom: var(--space-4);">
+            "How much do dental implants cost and how do I find a good local dentist?"
+          </div>
+          <div class="prompt-card-meta">
+            <div class="prompt-meta-item">
+              <span class="prompt-meta-label">Intent</span>
+              <span class="prompt-meta-val" id="simIntentText">HIGH</span>
+            </div>
+            <div class="prompt-meta-item">
+              <span class="prompt-meta-label">Stage</span>
+              <span class="prompt-meta-val" id="simStageText">COMPARISON</span>
+            </div>
+            <div class="prompt-meta-item">
+              <span class="prompt-meta-label">Opportunity</span>
+              <span class="prompt-meta-val" id="simOppText">LOCAL PROVIDER DISCOVERY</span>
+            </div>
+            <div class="prompt-meta-item">
+              <span class="prompt-meta-label">Action Target</span>
+              <span class="prompt-meta-val" id="simActionText" style="color: var(--color-forest);">Build campaign around implant comparison.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="font-body-sm" style="color: var(--color-mid-gray); text-align: center;">
+        Note: If an industry has specific advertising restrictions, we separate "AI customer-intent research" from "eligible advertising placements".
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 07: Traditional vs Study Intent -->
+  <section id="the-difference" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border); background-color: var(--color-paper);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">07 / COMPARATIVE STRATEGY</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">We start closer to the customer's actual decision.</h2>
+        </div>
+        <div class="col-8">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5);">
+            <div>
+              <h4 class="font-h4" style="color: var(--color-mid-gray); margin-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-2);">TRADITIONAL AGENCIES</h4>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-3);" class="font-mono">
+                <li style="color: var(--color-mid-gray);">&bull; Buy raw search keywords</li>
+                <li style="color: var(--color-mid-gray);">&bull; Target generic click-bait leads</li>
+                <li style="color: var(--color-mid-gray);">&bull; Optimize for low cost-per-click</li>
+                <li style="color: var(--color-mid-gray);">&bull; Ignore conversational context</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-3); border-bottom: 1px solid var(--color-copper); padding-bottom: var(--space-2);">OUR INTENT METHODOLOGY</h4>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-3);" class="font-mono">
+                <li style="color: var(--color-ink); font-weight:600;">&bull; Map precise buyer questions</li>
+                <li style="color: var(--color-ink); font-weight:600;">&bull; Isolate commercial intent scoring</li>
+                <li style="color: var(--color-ink); font-weight:600;">&bull; Position contextual responses</li>
+                <li style="color: var(--color-ink); font-weight:600;">&bull; Route high-value local calls</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 08 & 09: Market & Competitor Intelligence -->
+  <section id="intelligence" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">08 / INTELLIGENCE</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">See where your business can win.</h2>
+          <p class="font-body-sm" style="color: var(--color-mid-gray); margin-top: var(--space-3);">
+            We analyze target questions, competitors, local offers, and campaign themes to identify untapped market gaps.
+          </p>
+        </div>
+        <div class="col-8">
+          <div class="card" style="margin-bottom: var(--space-4);">
+            <h5 class="font-label" style="margin-bottom: var(--space-3);">Illustrative Positioning Map</h5>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse;" class="font-mono">
+                <thead>
+                  <tr style="border-bottom: 1px solid var(--color-border-strong); text-align: left; font-size: 12px;">
+                    <th style="padding: var(--space-2);">ENTITY</th>
+                    <th style="padding: var(--space-2);">CONVERSATIONAL DISCOVERY</th>
+                    <th style="padding: var(--space-2);">INTENT ALIGNMENT</th>
+                    <th style="padding: var(--space-2);">POSITIONING ACCURACY</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--color-border); font-size: 13px;">
+                    <td style="padding: var(--space-2); font-weight:600; color: var(--color-forest);">Your Business (Feeds)</td>
+                    <td style="padding: var(--space-2); color: var(--color-success);">Active</td>
+                    <td style="padding: var(--space-2);">Direct intent mapping</td>
+                    <td style="padding: var(--space-2);">High context</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--color-border); font-size: 13px; color: var(--color-mid-gray);">
+                    <td style="padding: var(--space-2);">Competitor A</td>
+                    <td style="padding: var(--space-2);">Inactive</td>
+                    <td style="padding: var(--space-2);">Static search bidding</td>
+                    <td style="padding: var(--space-2);">Low context</td>
+                  </tr>
+                  <tr style="font-size: 13px; color: var(--color-mid-gray);">
+                    <td style="padding: var(--space-2);">Competitor B</td>
+                    <td style="padding: var(--space-2);">Inactive</td>
+                    <td style="padding: var(--space-2);">Generic directory listing</td>
+                    <td style="padding: var(--space-2);">Zero context</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: The Offer -->
+  <section id="the-offer" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border); background-color: var(--color-paper);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">10 / VALUE MODEL</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">A different way to pay for growth.</h2>
+        </div>
+        <div class="col-8">
+          <p class="font-body-lg" style="margin-bottom: var(--space-5); color: var(--color-dark-gray);">
+            We align our success directly with yours. Pay a setup fee to establish the system, and performance fees based on actual qualified inquiries.
+          </p>
+          <div class="grid-12">
+            <div class="col-6 card">
+              <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-2);">01 / BUILD SETUP</h4>
+              <p class="font-body-sm" style="color: var(--color-dark-gray);">
+                One-time strategy setup fee covering market research, intent categorization, feed authoring, conversion setup, and tracking infrastructure.
+              </p>
+            </div>
+            <div class="col-6 card" style="border-color: var(--color-copper);">
+              <h4 class="font-h4" style="color: var(--color-copper); margin-bottom: var(--space-2);">02 / PERFORMANCE</h4>
+              <p class="font-body-sm" style="color: var(--color-dark-gray);">
+                Pay per qualified block of leads. A qualified lead represents a real, non-duplicate contact within your service area expressing genuine inquiry.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: Trust Built on Signal -->
+  <section id="trust" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container" style="text-align: center;">
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper); display: block; margin-bottom: var(--space-2);">11 / METHODOLOGY ASSURANCE</span>
+      <h2 class="font-h1" style="color: var(--color-forest); margin-bottom: var(--space-6);">Built on signal, not hype.</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-4); margin: 0 auto max-width: 900px;">
+        <div class="card" style="padding: var(--space-4);">
+          <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">01 // RESEARCH</span>
+          <p class="font-body-sm" style="margin-top: var(--space-2);">Identify questions</p>
+        </div>
+        <div class="card" style="padding: var(--space-4);">
+          <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">02 // EVIDENCE</span>
+          <p class="font-body-sm" style="margin-top: var(--space-2);">Quantify query volume</p>
+        </div>
+        <div class="card" style="padding: var(--space-4);">
+          <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">03 // STRATEGY</span>
+          <p class="font-body-sm" style="margin-top: var(--space-2);">Map target offers</p>
+        </div>
+        <div class="card" style="padding: var(--space-4);">
+          <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">04 // EXECUTION</span>
+          <p class="font-body-sm" style="margin-top: var(--space-2);">Deliver context feeds</p>
+        </div>
+        <div class="card" style="padding: var(--space-4);">
+          <span class="font-mono" style="color: var(--color-copper); font-size: 11px;">05 // MEASURE</span>
+          <p class="font-body-sm" style="margin-top: var(--space-2);">Track appointment outcomes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 12: Opportunity Audit Form -->
+  <section id="opportunity-form-sec" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border); background-color: var(--color-paper);">
+    <div class="container">
+      <div class="grid-12">
+        <div class="col-4">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">12 / OPPORTUNITY AUDIT</span>
+          <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">What is your market already asking?</h2>
+          <p class="font-body-sm" style="color: var(--color-mid-gray); margin-top: var(--space-3);">
+            Provide details about your business and region. We'll identify where active customer intent intersects with local opportunity.
+          </p>
+        </div>
+        <div class="col-8">
+          <form class="card" style="max-width: 560px; display: flex; flex-direction: column; gap: var(--space-4);" id="homepageAuditForm">
+            <div class="grid-12">
+              <div class="col-6 form-group">
+                <label class="input-label" for="homeBizName">Business Name</label>
+                <input type="text" id="homeBizName" class="input-text" placeholder="e.g. Austin Dental Care" required>
+              </div>
+              <div class="col-6 form-group">
+                <label class="input-label" for="homeWebsite">Website URL</label>
+                <input type="url" id="homeWebsite" class="input-text" placeholder="e.g. austindentistry.com" required>
+              </div>
+            </div>
+            <div class="grid-12">
+              <div class="col-6 form-group">
+                <label class="input-label" for="homeIndustry">Industry</label>
+                <select id="homeIndustry" class="input-select">
+                  <option>Dental</option>
+                  <option>HVAC</option>
+                  <option>Roofing</option>
+                  <option>Remodeling</option>
+                  <option>Med Spa</option>
+                  <option>Automotive</option>
+                  <option>Solar</option>
+                </select>
+              </div>
+              <div class="col-6 form-group">
+                <label class="input-label" for="homeLocation">City / Region</label>
+                <input type="text" id="homeLocation" class="input-text" placeholder="e.g. Austin, TX" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="homeEmail">Work Email</label>
+              <input type="email" id="homeEmail" class="input-text" placeholder="e.g. partner@austindentistry.com" required>
+            </div>
+            <div class="form-group">
+              <label class="input-label" for="homeGoal">Primary Goal</label>
+              <input type="text" id="homeGoal" class="input-text" placeholder="What are you trying to achieve?">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;" id="homeFormSubmitBtn">Show Me The Opportunity &rarr;</button>
+          </form>
+
+          <!-- Success State (Hidden initially) -->
+          <div class="card" id="formSuccessState" style="display: none; max-width: 560px; border-color: var(--color-success);">
+            <h4 class="font-h4" style="color: var(--color-success); margin-bottom: var(--space-2);">Your request is in.</h4>
+            <p class="font-body-sm" style="color: var(--color-dark-gray); margin-bottom: var(--space-4);">
+              We are compiling the local signal feed data. Here is what we'll review for you:
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-2);" class="font-mono">
+              <li>&bull; Inbound local customer query volumes</li>
+              <li>&bull; Competitive indexing gaps</li>
+              <li>&bull; Eligible conversational placement setups</li>
+              <li>&bull; Recommended context feed parameters</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 14: FAQ -->
+  <section id="faq" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
+    <div class="container" style="max-width: 800px;">
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper); display: block; margin-bottom: var(--space-3); text-align: center;">14 / TRANSPARENCY</span>
+      <h2 class="font-h1" style="color: var(--color-forest); margin-bottom: var(--space-6); text-align: center;">Frequently Asked Questions</h2>
+      
+      <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+        <div>
+          <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-1);">What exactly do you do?</h4>
+          <p class="font-body-sm" style="color: var(--color-dark-gray);">
+            We identify high-intent questions potential buyers ask AI assistants, build contextual message answers, and publish those feeds to help eligible local businesses acquire them.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-1);">Is this the same as traditional Google Ads?</h4>
+          <p class="font-body-sm" style="color: var(--color-dark-gray);">
+            No. Google Ads focuses on matching raw keywords on traditional search result lists. We focus on matching conversational context and user questions where AI synthesizes the answers.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-1);">Can any business advertise on ChatGPT?</h4>
+          <p class="font-body-sm" style="color: var(--color-dark-gray);">
+            Advertising eligibility, country availability, and categories are strictly regulated by platform policies. For restricted industries, we focus on organic context feeding and intelligence reports.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: var(--space-1);">Do you guarantee leads?</h4>
+          <p class="font-body-sm" style="color: var(--color-dark-gray);">
+            No. We do not claim guaranteed volumes. Instead, we qualify each lead block against defined service filters to verify real, local customer intent.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA: Forest Dark Section -->
+  <section class="theme-forest-section" style="background-color: var(--color-bg); color: var(--color-ink); padding: var(--space-12) 0; text-align: center; border-top: 1px solid var(--color-border);">
+    <div class="container" style="max-width: 720px;">
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper); display: block; margin-bottom: var(--space-3);">GET STARTED</span>
+      <h2 class="font-display" style="color: #F6F3EC; margin-bottom: var(--space-4);">Find the moment before the decision.</h2>
+      <p class="font-body-lg" style="color: var(--color-stone); margin-bottom: var(--space-6);">
+        Let's find out what your market is already asking.
+      </p>
+      
+      <div style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
+        <a href="/opportunity" class="btn btn-dark-primary" id="footerCtaBtn">See Your Opportunity &rarr;</a>
+        <a href="mailto:hello@openreach.agency" class="btn btn-secondary" style="color:#F6F3EC; border-color:#F6F3EC;">Email Us</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Editorial Footer -->
-  <footer style="border-top: 1px solid var(--color-border); padding: var(--space-6) 0; background-color: transparent;">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
-      <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">
-        openreach.agency — Platform Agnostic Customer Discovery
-      </span>
-      <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">
-        &copy; 2026 openreach.agency. All rights reserved.
-      </span>
+  <footer style="border-top: 1px solid var(--color-border); padding: var(--space-8) 0; background-color: var(--color-paper); color: var(--color-ink);">
+    <div class="container">
+      <div class="grid-12" style="margin-bottom: var(--space-6);">
+        <div class="col-4">
+          <a href="/" style="font-family: var(--font-display); font-size: 24px; text-decoration: none; color: var(--color-ink); font-weight: 500;">
+            openreach.agency
+          </a>
+          <p class="font-body-sm" style="color: var(--color-mid-gray); margin-top: var(--space-2); max-width: 260px;">
+            Customer acquisition for the age of conversational discovery.
+          </p>
+        </div>
+        <div class="col-4">
+          <h5 class="font-label" style="margin-bottom: var(--space-3);">Navigation</h5>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-2);" class="font-mono">
+            <li><a href="/how-it-works" style="color: var(--color-mid-gray); text-decoration: none; font-size: 12px;">Methodology</a></li>
+            <li><a href="/industries" style="color: var(--color-mid-gray); text-decoration: none; font-size: 12px;">Industries</a></li>
+            <li><a href="/chatgpt-ads" style="color: var(--color-mid-gray); text-decoration: none; font-size: 12px;">ChatGPT Ads</a></li>
+            <li><a href="/about" style="color: var(--color-mid-gray); text-decoration: none; font-size: 12px;">Philosophy</a></li>
+            <li><a href="/insights" style="color: var(--color-mid-gray); text-decoration: none; font-size: 12px;">Insights</a></li>
+            <li><a href="/contact" style="color: var(--color-mid-gray); text-decoration: none; font-size: 12px;">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5 class="font-label" style="margin-bottom: var(--space-3);">Platform & Legal</h5>
+          <p style="font-size: 11px; color: var(--color-mid-gray); line-height: 1.4; margin-bottom: var(--space-3);">
+            This agency is an independent marketing firm. We do not claim official partnership with or endorsement by OpenAI or ChatGPT.
+          </p>
+          <span style="font-size: 11px; color: var(--color-mid-gray);" class="font-mono">hello@openreach.agency</span>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid var(--color-border); padding-top: var(--space-4); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3);">
+        <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">
+          &copy; 2026 openreach.agency. Built with Warm Intelligence.
+        </span>
+        <div style="display: flex; gap: var(--space-3);" class="font-mono">
+          <a href="/privacy" style="color: var(--color-mid-gray); text-decoration: none; font-size: 11px;">Privacy Policy</a>
+          <a href="/terms" style="color: var(--color-mid-gray); text-decoration: none; font-size: 11px;">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
 
