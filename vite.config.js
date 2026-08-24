@@ -17,7 +17,10 @@ export default defineConfig({
         industriesDental: resolve(__dirname, 'industries/dental.html'),
         industriesHomeServices: resolve(__dirname, 'industries/home-services.html'),
         industriesAutomotive: resolve(__dirname, 'industries/automotive.html'),
-        industriesMedSpa: resolve(__dirname, 'industries/med-spa.html')
+        industriesMedSpa: resolve(__dirname, 'industries/med-spa.html'),
+        industriesHvac: resolve(__dirname, 'industries/hvac.html'),
+        industriesRoofing: resolve(__dirname, 'industries/roofing.html'),
+        industriesRemodeling: resolve(__dirname, 'industries/remodeling.html')
       },
     },
   },

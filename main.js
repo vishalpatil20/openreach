@@ -99,46 +99,46 @@ const simActionText = document.getElementById('simActionText');
 
 const simulatorData = {
   dental: {
-    question: '"How much do dental implants cost and how do I find a good local dentist?"',
+    question: '"What are the best dentists near me for dental implants?"',
     intent: 'HIGH',
-    stage: 'COMPARISON',
-    opp: 'LOCAL PROVIDER DISCOVERY',
-    action: 'Build campaign around implants pricing and surgeon experience.'
+    stage: 'Comparing providers',
+    opp: 'Reach people already considering a local provider.',
+    action: 'Build campaign around implants pricing.'
   },
   hvac: {
-    question: '"My air conditioning system stopped working in Austin heat. Is there an emergency repair technician near me?"',
+    question: '"My AC unit is blowing warm air in Austin, is there a repair technician open near me?"',
     intent: 'HIGH',
-    stage: 'DECISION',
-    opp: 'EMERGENCY REPLACEMENT',
-    action: 'Route calls immediately to local technician on-call roster.'
+    stage: 'Researching immediate repair options',
+    opp: 'Position your repair services in emergency windows.',
+    action: 'Target local Austin repair searches.'
   },
   roofing: {
-    question: '"What does it cost to get a metal roof installed in Portland, and who is highly rated?"',
+    question: '"What does it cost to get a metal roof installed, and who is highly rated?"',
     intent: 'HIGH',
-    stage: 'RESEARCH',
-    opp: 'LOCAL PROVIDER DISCOVERY',
-    action: 'Match with local metal roofing cost guides and warranty offers.'
+    stage: 'Researching metal roof costs and reviews',
+    opp: 'Match with homeowners comparing installation budgets.',
+    action: 'Map answers to roof replacement costs.'
   },
   remodeling: {
-    question: '"How long does a master bathroom renovation take and how do I get a local contractor quote?"',
+    question: '"How long does a bathroom renovation take and how do I get a local quote?"',
     intent: 'MEDIUM',
-    stage: 'COMPARISON',
-    opp: 'QUOTE REQUEST',
-    action: 'Align with estimated renovation schedules and free audit offers.'
+    stage: 'Comparing renovation schedules and quotes',
+    opp: 'Capture high-value renovation leads before they commit.',
+    action: 'Align with estimated renovation schedules.'
   },
   medspa: {
-    question: '"What is the average recovery time for coolsculpting and what local cosmetic clinics offer it?"',
+    question: '"What is the average recovery time for coolsculpting and what local clinics offer it?"',
     intent: 'HIGH',
-    stage: 'COMPARISON',
-    opp: 'TREATMENT CONSULTATION',
-    action: 'Target procedures research with direct online booking feeds.'
+    stage: 'Researching coolsculpting clinics and recovery times',
+    opp: 'Promote consultation bookings during treatment comparisons.',
+    action: 'Match with treatment options.'
   },
   automotive: {
     question: '"Where can I find an authorized luxury auto dealer near me that has electric SUVs in stock?"',
     intent: 'HIGH',
-    stage: 'DECISION',
-    opp: 'VEHICLE PURCHASE',
-    action: 'Integrate real-time new electric vehicle inventory feeds.'
+    stage: 'Looking for luxury EV inventory',
+    opp: 'Route EV buyers directly to your dealership showroom.',
+    action: 'Integrate electric vehicle inventory feeds.'
   }
 };
 
@@ -152,11 +152,11 @@ if (simTabs && simQuestionText) {
       const data = simulatorData[category];
       
       if (data) {
-        simQuestionText.textContent = data.question;
-        simIntentText.textContent = data.intent;
-        simStageText.textContent = data.stage;
-        simOppText.textContent = data.opp;
-        simActionText.textContent = data.action;
+        if (simQuestionText) simQuestionText.textContent = data.question;
+        if (simIntentText) simIntentText.textContent = data.intent;
+        if (simStageText) simStageText.textContent = data.stage;
+        if (simOppText) simOppText.textContent = data.opp;
+        if (simActionText) simActionText.textContent = data.action;
       }
     });
   });
