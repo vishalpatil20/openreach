@@ -1,9 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="32" height="32">
-  <rect width="400" height="260" rx="40" fill="#18342B"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 260" width="32" height="32">
   <!-- tapered horizontal line passing through the ring -->
   <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="#B86B43"/>
 
   <!-- ring, split into top and bottom arcs with gaps where the line passes through -->
-  <path d="M151.76,113.36 A80,80 0 0,1 308.24,113.36" stroke="#F6F3EC" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M308.24,146.64 A80,80 0 0,1 151.76,146.64" stroke="#F6F3EC" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M151.76,113.36 A80,80 0 0,1 308.24,113.36" stroke="#18342B" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M308.24,146.64 A80,80 0 0,1 151.76,146.64" stroke="#18342B" stroke-width="12" fill="none" stroke-linecap="round"/>
 </svg>
