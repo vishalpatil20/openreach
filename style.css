@@ -1107,4 +1107,154 @@ h4, .font-h4 {
   }
 }
 
+/* ==========================================================================
+   04 — MOBILE RESPONSIVENESS OVERHAUL
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Mobile Typography Scaling */
+  .font-display-xl {
+    font-size: 2.5rem !important;
+    line-height: 1.05 !important;
+  }
+  .font-display {
+    font-size: 2.1rem !important;
+    line-height: 1.08 !important;
+  }
+  h1, .font-h1 {
+    font-size: 1.95rem !important;
+    line-height: 1.1 !important;
+  }
+  h2, .font-h2 {
+    font-size: 1.65rem !important;
+    line-height: 1.15 !important;
+  }
+  h3, .font-h3 {
+    font-size: 1.35rem !important;
+    line-height: 1.2 !important;
+  }
+  .font-body-lg {
+    font-size: 1.05rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Responsive Container & Section Spacing */
+  .container {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+  }
+
+  header, section {
+    padding-top: var(--space-8) !important;
+    padding-bottom: var(--space-8) !important;
+  }
+
+  /* Responsive Navigation Bar */
+  nav .container {
+    height: 60px !important;
+    gap: var(--space-2);
+  }
+
+  .nav-links {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: var(--space-4) !important;
+    -webkit-overflow-scrolling: touch;
+    max-width: 50vw;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brand-logo-link svg {
+    height: 28px !important;
+    max-width: 150px !important;
+  }
+
+  /* Flex Grid Stacking */
+  .grid-12 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-4) !important;
+  }
+
+  .col-12, .col-8, .col-6, .col-5, .col-4, .col-3 {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Card padding reduction */
+  .card {
+    padding: var(--space-4) !important;
+  }
+
+  /* Dashboard Mobile View Adjustments */
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .dashboard-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    padding: var(--space-3) 0 !important;
+  }
+
+  .sidebar-brand {
+    padding: 0 var(--space-4) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .sidebar-menu {
+    display: flex !important;
+    overflow-x: auto !important;
+    padding: 0 var(--space-4) !important;
+    gap: var(--space-2) !important;
+    white-space: nowrap;
+  }
+
+  .sidebar-item {
+    margin-bottom: 0 !important;
+  }
+
+  .sidebar-text {
+    display: inline !important;
+  }
+
+  .dashboard-main {
+    margin-left: 0 !important;
+    padding-bottom: var(--space-8);
+  }
+
+  .dashboard-topbar {
+    height: auto !important;
+    padding: var(--space-3) var(--space-4) !important;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .dashboard-search {
+    width: 100% !important;
+    order: 3;
+    margin-top: var(--space-2);
+  }
+
+  .dashboard-view {
+    padding: var(--space-4) !important;
+  }
+
+  .lead-table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lead-table {
+    min-width: 680px;
+  }
+}
+
+
 
