@@ -1,4 +1,13 @@
-<svg viewBox="0 0 340 70" xmlns="http://www.w3.org/2000/svg" height="32">
-  <image href="/openreach-logo-transparent.png" x="0" y="5" height="60" width="225" />
-  <text x="226" y="49" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', sans-serif" font-size="30" font-weight="600" fill="#B86B43" letter-spacing="-0.5px">.agency</text>
+<svg width="1300" height="260" viewBox="0 0 1300 260" xmlns="http://www.w3.org/2000/svg">
+  <!-- tapered horizontal line passing through the ring -->
+  <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="#0a0a0a"/>
+
+  <!-- ring, split into top and bottom arcs with gaps where the line passes through -->
+  <path d="M151.76,113.36 A80,80 0 0,1 308.24,113.36" stroke="#0a0a0a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M308.24,146.64 A80,80 0 0,1 151.76,146.64" stroke="#0a0a0a" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- wordmark -->
+  <text x="420" y="168" font-family="'Helvetica Neue', Arial, sans-serif" font-size="92" fill="#0a0a0a">
+    <tspan font-weight="300">Open</tspan><tspan font-weight="800">Reach</tspan><tspan font-weight="300" font-size="52" dy="2">.agency</tspan>
+  </text>
 </svg>

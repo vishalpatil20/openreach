@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="32" height="32">
-  <rect width="160" height="160" rx="32" fill="#18342B"/>
-  <image href="/favicon-mark.png" x="20" y="20" width="120" height="120" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="32" height="32">
+  <rect width="400" height="260" rx="40" fill="#18342B"/>
+  <!-- tapered horizontal line -->
+  <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="#B86B43"/>
+  <!-- ring -->
+  <path d="M151.76,113.36 A80,80 0 0,1 308.24,113.36" stroke="#F6F3EC" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M308.24,146.64 A80,80 0 0,1 151.76,146.64" stroke="#F6F3EC" stroke-width="10" fill="none" stroke-linecap="round"/>
 </svg>
