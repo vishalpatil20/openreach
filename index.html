@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>openreach.agency — Design System</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Background Ambience Layer -->
+  <div class="bg-ambient-layer">
+    <div class="bg-dot-grid" id="dotGrid"></div>
+    <div class="bg-line-grid" id="lineGrid"></div>
+    <div class="bg-noise" id="noiseGrain"></div>
+    <div class="bg-spotlight" id="spotlightGlow"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>
+        openreach.agency
+      </a>
+      <ul class="nav-links">
+        <li><a href="#foundations" class="nav-link">Foundations</a></li>
+        <li><a href="#typography" class="nav-link">Typography</a></li>
+        <li><a href="#components" class="nav-link">Components</a></li>
+        <li><a href="#intelligence" class="nav-link">Intelligence</a></li>
+      </ul>
+      <div style="display: flex; align-items: center; gap: var(--space-4);">
+        <button id="themeToggle" class="btn btn-secondary" style="height: 38px; padding: 0 var(--space-3);" aria-label="Toggle light/dark theme">
+          <!-- Light/Dark Mode Icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <button class="btn btn-primary" id="navbarCTA" style="height: 38px;">Audit opportunity &rarr;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Showcase Hero -->
+  <header class="showcase-header">
+    <div class="container">
+      <div class="showcase-title-area">
+        <span class="section-label">00 / SYSTEM CORE</span>
+        <h1 class="font-display-xl" style="margin-bottom: var(--space-4);">Quiet confidence.</h1>
+        <p class="font-body-lg" style="margin-bottom: var(--space-5);">
+          This design system establishes the visual standards for openreach.agency—a premium marketing and client acquisition agency. It prioritizes evidence over decoration, typography hierarchy, and premium restraint.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Page -->
+  <main class="container" style="padding-bottom: var(--space-12);">
+    
+    <!-- 01 FOUNDATIONS -->
+    <section id="foundations" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">01 / FOUNDATIONS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Brand Palette & Surfaces</h2>
+          <p class="font-body-sm">
+            Core surface levels built on a dark-first aesthetic, with a single distinctive warm accent color. Supports a light mode inspired by warm paper.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <!-- Dark Swatches -->
+          <div>
+            <h4 class="font-mono" style="margin-bottom: var(--space-3); font-size: 12px; color: var(--color-accent)">DARK CORE SURFACES</h4>
+            <div class="color-swatch-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #10100F;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600;">Background</span>
+                  <span class="font-mono" style="font-size:11px;">#10100F</span>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #151514;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600;">Surface 1</span>
+                  <span class="font-mono" style="font-size:11px;">#151514</span>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #1B1B19;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600;">Surface 2</span>
+                  <span class="font-mono" style="font-size:11px;">#1B1B19</span>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #E86A45;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600; color: var(--color-accent)">Primary Accent</span>
+                  <span class="font-mono" style="font-size:11px;">#E86A45</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semantic Swatches -->
+          <div>
+            <h4 class="font-mono" style="margin-bottom: var(--space-3); font-size: 12px; color: var(--color-text-lo);">SEMANTIC STATES</h4>
+            <div class="color-swatch-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #72B890;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600;">Success</span>
+                  <span class="font-mono" style="font-size:11px;">#72B890</span>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #D6A65A;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600;">Warning</span>
+                  <span class="font-mono" style="font-size:11px;">#D6A65A</span>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #D96B6B;"></div>
+                <div class="color-swatch-info">
+                  <span class="font-body-sm" style="font-weight:600;">Error</span>
+                  <span class="font-mono" style="font-size:11px;">#D96B6B</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 TYPOGRAPHY -->
+    <section id="typography" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">02 / TYPOGRAPHY</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Font & Type Scales</h2>
+          <p class="font-body-sm">
+            Displays, headers, paragraphs, and statistics utilize our three-font system containing Bricolage Grotesque, Geist Sans, and Geist Mono.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div>
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">DISPLAY XL (Bricolage Grotesque, 72px)</span>
+            <div class="font-display-xl" style="margin-top: var(--space-2); margin-bottom: var(--space-4);">Next customer.</div>
+
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">DISPLAY (Bricolage Grotesque, 60px)</span>
+            <div class="font-display" style="margin-top: var(--space-2); margin-bottom: var(--space-4);">Acquire intent.</div>
+
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">HEADING 1 (Bricolage Grotesque, 48px)</span>
+            <h1 style="margin-top: var(--space-2); margin-bottom: var(--space-4);">Emerging search landscapes</h1>
+
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">HEADING 2 (Bricolage Grotesque, 36px)</span>
+            <h2 style="margin-top: var(--space-2); margin-bottom: var(--space-4);">Commercial opportunities</h2>
+
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">BODY LARGE (Geist, 19px)</span>
+            <p class="font-body-lg" style="margin-top: var(--space-2); margin-bottom: var(--space-4);">
+              Offline and local businesses are struggling to be discovered as search shifts to conversational agents.
+            </p>
+
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">BODY STANDARD (Geist, 16px)</span>
+            <p class="font-body" style="margin-top: var(--space-2); margin-bottom: var(--space-4);">
+              We audit conversational channels, identify target queries, and launch optimized context feeds directly to platforms serving real-time intent.
+            </p>
+
+            <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">METADATA / DATA (Geist Mono, 13px)</span>
+            <p class="font-mono" style="margin-top: var(--space-2);">
+              ID: OP-98234 // INBOUNDS: 247 // CPC: $2.44 // TIMESTART: 2026.08.24
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 BUTTONS -->
+    <section id="buttons" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">03 / BUTTONS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Action Components</h2>
+          <p class="font-body-sm">
+            Three levels of action triggers: Primary (accent filled with slight glow), Secondary (outline), and Tertiary (ghost/inline).
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4);">
+            <button class="btn btn-primary" id="magneticButton">Book a strategy call</button>
+            <button class="btn btn-secondary">See how it works</button>
+            <button class="btn btn-ghost">Learn more &rarr;</button>
+            <button class="btn btn-secondary" disabled>Disabled action</button>
+          </div>
+          <span class="font-mono" style="font-size: 11px; color: var(--color-text-lo);">The primary CTA above features a magnetic interaction. Hover closely to test alignment.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 INPUTS -->
+    <section id="inputs" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">04 / INPUTS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Form Controls</h2>
+          <p class="font-body-sm">
+            Text fields, dropdown menus, and segmented tabs that feel clean, premium, and respect the core color tokens.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="grid-12">
+            <div class="col-6 form-group">
+              <label class="input-label" for="testName">Business Name</label>
+              <input type="text" id="testName" class="input-text" placeholder="e.g. Austin Dental Care">
+            </div>
+            <div class="col-6 form-group">
+              <label class="input-label" for="testSelect">Target Market</label>
+              <select id="testSelect" class="input-select">
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>Germany</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <span class="input-label" style="display: block; margin-bottom: var(--space-2);">Segmented Control</span>
+            <div class="segmented-control">
+              <button class="segment-item active">Analytics</button>
+              <button class="segment-item">Audits</button>
+              <button class="segment-item">Integrations</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 BADGES -->
+    <section id="badges" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">05 / BADGES</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Semantic Status Tags</h2>
+          <p class="font-body-sm">
+            Pills reserved for displaying category labels, priority levels, live states, and target intents.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-3);">
+            <span class="badge badge-live">Live feed</span>
+            <span class="badge badge-accent">Early signal</span>
+            <span class="badge badge-intent">High intent</span>
+            <span class="badge badge-neutral">Competitor</span>
+            <span class="badge badge-neutral">PRO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 CARDS -->
+    <section id="cards" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">06 / CARDS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Surfaces & Containers</h2>
+          <p class="font-body-sm">
+            Containers designed to look like physical layers. Includes interactive highlights and cursor spotlights on hover.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="grid-12">
+            <div class="col-6 card card-hover" id="spotlightCard">
+              <h4 class="font-h4" style="margin-bottom: var(--space-2);">Interactive Spotlight Card</h4>
+              <p class="font-body-sm">
+                This card tracks the cursor position to generate a subtle radial spotlight overlay on its surface borders.
+              </p>
+            </div>
+            <div class="col-6 card">
+              <h4 class="font-h4" style="margin-bottom: var(--space-2);">Static Base Card</h4>
+              <p class="font-body-sm">
+                A surface-1 container with a subtle top border highlight and ambient dropshadow, representing understated quality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 CONVERSATION SIGNALS -->
+    <section id="conversation-signals" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">07 / SIGNALS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Inbound Prompt Cards</h2>
+          <p class="font-body-sm">
+            Represents actual customer questions on AI search engines. It displays intent classification parameters as structured brand evidence.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="prompt-card">
+            <div class="prompt-card-header">
+              <span class="font-label" style="color: var(--color-accent);">REAL-TIME USER QUERY</span>
+              <span class="badge badge-live">LIVE MONITORING</span>
+            </div>
+            <div class="prompt-card-body">
+              "I have severe lower back stiffness after working out yesterday. Is there a physical therapist open in central Austin right now who accepts BCBS?"
+            </div>
+            <div class="prompt-card-metadata">
+              <div class="meta-item">
+                <span class="meta-label">Intent</span>
+                <span class="meta-val" style="color: var(--color-warning);">HIGH COMMERCIAL</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-val">Physical Therapy</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Location</span>
+                <span class="meta-val">Austin, TX</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Buying Stage</span>
+                <span class="meta-val" style="color: var(--color-success);">DECISION</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 AD MOCKUPS -->
+    <section id="ad-mockups" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">08 / PLACEMENTS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">AI Ad Placements</h2>
+          <p class="font-body-sm">
+            Sponsored client responses within search queries, framed as clean, structured, and premium marketing artifacts.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="ad-mockup">
+            <div class="ad-context">
+              <strong>User prompt:</strong> "Where can I get high-end custom wood tables made in Portland?"
+            </div>
+            <div class="ad-arrow">&darr;</div>
+            <div class="ad-excerpt">
+              "For artisanal, handcrafted wood furniture in Portland, you can review details from local craftspeople specializing in premium reclaimed dining tables..."
+            </div>
+            <div class="ad-sponsored-box">
+              <div class="ad-sponsored-header">
+                <span class="ad-sponsored-label">SPONSORED PLACEMENT</span>
+                <span class="badge badge-live" style="font-size: 9px;">ACTIVE FEED</span>
+              </div>
+              <div class="ad-advertiser">Oak & Steel Craft</div>
+              <div class="ad-headline">Handcrafted Dining Tables & Custom Woodwork</div>
+              <p class="ad-description">
+                Creating heirloom-quality custom dining, conference, and accent tables from sustainably sourced local hardwoods. Order now for autumn delivery.
+              </p>
+              <button class="btn btn-primary" style="height: 36px; font-size: 12px; width: 100%;">View custom furniture builder &rarr;</button>
+              <span class="ad-tagline">Illustrative example of conversational AI placement.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 METRICS & 10 DATA -->
+    <section id="metrics" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">09 / ANALYTICS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">KPIs & Trends</h2>
+          <p class="font-body-sm">
+            Numerics and visualizations prioritizing evidence. Minimal bars and simple percentage trend metrics.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="grid-12">
+            <div class="col-4 kpi-card">
+              <span class="kpi-num-prefix">01</span>
+              <div class="kpi-title">QUALIFIED INBOUNDS</div>
+              <div class="kpi-val" id="countingStat">0</div>
+              <div class="kpi-change">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="19" x2="12" y2="5"></line>
+                  <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+                +18.4% / 30 DAYS
+              </div>
+            </div>
+            <div class="col-8 card">
+              <h4 class="font-h4" style="margin-bottom: var(--space-4);">Share of Intent Conversions</h4>
+              <div class="ranking-list">
+                <div class="ranking-item">
+                  <span class="ranking-idx">01</span>
+                  <span>Our Feed Client</span>
+                  <div class="ranking-bar-wrapper">
+                    <div class="ranking-bar" style="width: 48%;"></div>
+                  </div>
+                  <span style="text-align: right;">48.2%</span>
+                </div>
+                <div class="ranking-item">
+                  <span class="ranking-idx">02</span>
+                  <span>Competitor A</span>
+                  <div class="ranking-bar-wrapper">
+                    <div class="ranking-bar" style="width: 22%; opacity: 0.5;"></div>
+                  </div>
+                  <span style="text-align: right;">22.4%</span>
+                </div>
+                <div class="ranking-item">
+                  <span class="ranking-idx">03</span>
+                  <span>Competitor B</span>
+                  <div class="ranking-bar-wrapper">
+                    <div class="ranking-bar" style="width: 14%; opacity: 0.5;"></div>
+                  </div>
+                  <span style="text-align: right;">14.1%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 NAVIGATION, TABS & BREADCRUMBS -->
+    <section id="navigation" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">10 / NAVIGATION</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Wayfinding Elements</h2>
+          <p class="font-body-sm">
+            Clean navigation components, custom interactive tabs, and visual page indicators.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <!-- Navigation mockup inside page -->
+          <div class="card" style="padding: var(--space-4);">
+            <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4); align-items: center;">
+              <span class="font-mono" style="font-size: 11px; color: var(--color-text-lo);">Breadcrumb:</span>
+              <span class="font-mono" style="font-size: 11px; color: var(--color-text-mid);">Dashboards</span>
+              <span class="font-mono" style="font-size: 11px; color: var(--color-text-lo);">&rarr;</span>
+              <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">Client Feed</span>
+            </div>
+            <div style="display: flex; border-bottom: 1px solid var(--color-border); gap: var(--space-4);">
+              <span class="font-body-sm" style="color: var(--color-accent); border-bottom: 2px solid var(--color-accent); padding-bottom: var(--space-2); font-weight: 500; cursor: pointer;">Performance</span>
+              <span class="font-body-sm" style="color: var(--color-text-lo); padding-bottom: var(--space-2); cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--color-text-hi)'" onmouseout="this.style.color='var(--color-text-lo)'">Campaign Rules</span>
+              <span class="font-body-sm" style="color: var(--color-text-lo); padding-bottom: var(--space-2); cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--color-text-hi)'" onmouseout="this.style.color='var(--color-text-lo)'">Activity Audit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 OVERLAYS -->
+    <section id="overlays" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">11 / OVERLAYS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Modals & Drawers</h2>
+          <p class="font-body-sm">
+            Focus-inducing layout overlaps (drawers, modals, search command menus) triggered dynamically.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <button class="btn btn-secondary" id="triggerModal">Trigger standard modal</button>
+            <button class="btn btn-secondary" id="triggerDrawer">Trigger details drawer</button>
+            <button class="btn btn-secondary" id="triggerCommand">Trigger command bar (⌘K)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 BACKGROUNDS -->
+    <section id="backgrounds" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">12 / ENVIRONMENT</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Background Control</h2>
+          <p class="font-body-sm">
+            Fine-tune environment details. Use low opacity, clean lines, and spotlights to define depth.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="card" style="display: flex; flex-direction: column; gap: var(--space-4);">
+            <h4 class="font-h4">Environmental toggles</h4>
+            <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+              <button class="btn btn-secondary" id="toggleDots" style="height: 38px;">Toggle dot grid</button>
+              <button class="btn btn-secondary" id="toggleLines" style="height: 38px;">Toggle lines</button>
+              <button class="btn btn-secondary" id="toggleNoise" style="height: 38px;">Toggle grain/noise</button>
+              <button class="btn btn-secondary" id="toggleSpotlight" style="height: 38px;">Toggle accent spotlight</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 MOTION -->
+    <section id="motion" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">13 / MOTION</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Transition Tests</h2>
+          <p class="font-body-sm">
+            Transitions are kept intentional, using dampened curves, slight lifts, and spotlights.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="grid-12">
+            <div class="col-6 card card-hover" style="text-align: center; padding: var(--space-6);">
+              <span class="font-mono" style="color: var(--color-accent); font-size: 11px; display: block; margin-bottom: var(--space-2);">HOVER TRANSITION</span>
+              <h4 class="font-h4">Lift & Border Brightness</h4>
+            </div>
+            <div class="col-6 card" id="scrollRevealDemo" style="text-align: center; padding: var(--space-6); transition: opacity 0.5s ease, transform 0.5s ease; opacity: 0.6;">
+              <span class="font-mono" style="color: var(--color-accent); font-size: 11px; display: block; margin-bottom: var(--space-2);">REVEAL EVENT</span>
+              <h4 class="font-h4">Dampened scroll fade</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 RESPONSIVE PREVIEWS -->
+    <section id="responsive-previews" class="showcase-section">
+      <div class="showcase-section-grid">
+        <div class="section-info">
+          <span class="section-label">14 / PREVIEWS</span>
+          <h2 class="font-h3" style="margin-bottom: var(--space-3);">Responsive Viewport Simulation</h2>
+          <p class="font-body-sm">
+            Drag the slider to test layout scaling, readability thresholds, and single-column wrap states.
+          </p>
+        </div>
+        <div class="showcase-demo-container">
+          <div class="form-group" style="max-width: 300px; margin: 0 auto var(--space-4) auto;">
+            <label class="input-label" for="viewportSlider">Simulator Width: <span id="viewportWidthLabel" class="font-mono">100%</span></label>
+            <input type="range" id="viewportSlider" min="320" max="800" value="800" style="accent-color: var(--color-accent); width: 100%;">
+          </div>
+
+          <div class="viewport-simulator" id="simContainer" style="width: 800px;">
+            <div class="viewport-simulator-header">
+              <span class="font-mono" style="font-size: 11px;">Viewport sandbox</span>
+              <div style="display: flex; gap: var(--space-2);">
+                <button class="btn btn-secondary" style="height: 28px; font-size: 11px; padding: 0 var(--space-2);" onclick="document.getElementById('viewportSlider').value=360; document.getElementById('viewportSlider').dispatchEvent(new Event('input'))">Mobile</button>
+                <button class="btn btn-secondary" style="height: 28px; font-size: 11px; padding: 0 var(--space-2);" onclick="document.getElementById('viewportSlider').value=600; document.getElementById('viewportSlider').dispatchEvent(new Event('input'))">Tablet</button>
+                <button class="btn btn-secondary" style="height: 28px; font-size: 11px; padding: 0 var(--space-2);" onclick="document.getElementById('viewportSlider').value=800; document.getElementById('viewportSlider').dispatchEvent(new Event('input'))">Desktop</button>
+              </div>
+            </div>
+            <div class="viewport-simulator-screen">
+              <div class="grid-12">
+                <div class="col-4 card" style="padding: var(--space-3);">
+                  <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">INTENT</span>
+                  <h4 style="font-size: 16px; margin: var(--space-2) 0;">High Signal</h4>
+                  <p class="font-body-sm" style="font-size: 12px; line-height: 1.4;">Adapts to fit standard viewports seamlessly.</p>
+                </div>
+                <div class="col-4 card" style="padding: var(--space-3);">
+                  <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">VOLUME</span>
+                  <h4 style="font-size: 16px; margin: var(--space-2) 0;">18.4% MoM</h4>
+                  <p class="font-body-sm" style="font-size: 12px; line-height: 1.4;">Increases search volume in local category pools.</p>
+                </div>
+                <div class="col-4 card" style="padding: var(--space-3);">
+                  <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">ACTION</span>
+                  <h4 style="font-size: 16px; margin: var(--space-2) 0;">Convert</h4>
+                  <p class="font-body-sm" style="font-size: 12px; line-height: 1.4;">Direct feeds to platforms serving real-time intent.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Foot-note / Footer -->
+  <footer style="border-top: 1px solid var(--color-border-subtle); padding: var(--space-8) 0; margin-top: var(--space-12); background-color: var(--color-surface-1);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
+      <span class="logo" style="font-size: var(--fs-body);">
+        <span class="logo-dot"></span>
+        openreach.agency
+      </span>
+      <span class="font-mono" style="font-size: 11px; color: var(--color-text-lo);">
+        &copy; 2026 openreach.agency. Built with premium restraint.
+      </span>
+    </div>
+  </footer>
+
+  <!-- Modal Component Template -->
+  <div class="overlay" id="modalOverlay">
+    <div class="modal-content">
+      <h3 class="font-h3" style="margin-bottom: var(--space-3);">Acquisition Audit Proposal</h3>
+      <p class="font-body-sm" style="margin-bottom: var(--space-5);">
+        Configure targets, identify organic local keywords, and build client report channels.
+      </p>
+      <div style="display: flex; justify-content: flex-end; gap: var(--space-3);">
+        <button class="btn btn-secondary" style="height: 38px;" id="closeModal">Cancel</button>
+        <button class="btn btn-primary" style="height: 38px;" id="confirmModal">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer Component Template -->
+  <div class="overlay" id="drawerOverlay">
+    <div class="drawer-content">
+      <h3 class="font-h3" style="margin-bottom: var(--space-4);">Signal Details</h3>
+      <p class="font-body-sm" style="margin-bottom: var(--space-4);">
+        Full context regarding this user intent packet.
+      </p>
+      <div class="card" style="margin-bottom: var(--space-5);">
+        <span class="font-mono" style="font-size: 11px; color: var(--color-accent);">RAW METADATA</span>
+        <pre class="font-mono" style="font-size: 11px; margin-top: var(--space-2); white-space: pre-wrap; line-height: 1.4;">
+{
+  "client_ip_hash": "4a9f9d2...",
+  "session_length_seconds": 124,
+  "inferred_urgency": 0.94,
+  "confidence_score": 0.98
+}
+        </pre>
+      </div>
+      <button class="btn btn-secondary" style="width: 100%;" id="closeDrawer">Close Details</button>
+    </div>
+  </div>
+
+  <!-- Command Menu overlay -->
+  <div class="overlay" id="cmdOverlay">
+    <div class="cmd-content">
+      <div class="cmd-input-wrapper">
+        <input type="text" class="cmd-input" placeholder="Search components, rules or design guides..." id="cmdSearchInput">
+        <span class="font-mono" style="font-size: 11px; color: var(--color-text-lo);">ESC</span>
+      </div>
+      <div class="cmd-list">
+        <div class="cmd-item" onclick="location.hash='#foundations'; document.getElementById('cmdOverlay').classList.remove('open')">
+          <span>Foundations & Brand Palette</span>
+          <span class="font-mono" style="font-size: 11px;">Go to Section 1</span>
+        </div>
+        <div class="cmd-item" onclick="location.hash='#typography'; document.getElementById('cmdOverlay').classList.remove('open')">
+          <span>Typography Scales</span>
+          <span class="font-mono" style="font-size: 11px;">Go to Section 2</span>
+        </div>
+        <div class="cmd-item" onclick="location.hash='#buttons'; document.getElementById('cmdOverlay').classList.remove('open')">
+          <span>Buttons & Action Elements</span>
+          <span class="font-mono" style="font-size: 11px;">Go to Section 3</span>
+        </div>
+        <div class="cmd-item" onclick="location.hash='#conversation-signals'; document.getElementById('cmdOverlay').classList.remove('open')">
+          <span>Conversation signals</span>
+          <span class="font-mono" style="font-size: 11px;">Go to Section 7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
