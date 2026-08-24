@@ -810,3 +810,301 @@ h4, .font-h4 {
   font-weight: bold;
 }
 
+/* ==========================================================================
+   14 — CLIENT INTELLIGENCE DASHBOARD STYLES
+   ========================================================================== */
+.dashboard-body {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar Navigation */
+.dashboard-sidebar {
+  width: 260px;
+  background-color: var(--color-paper);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-5) 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+}
+
+.sidebar-brand {
+  padding: 0 var(--space-5) var(--space-5) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sidebar-item a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-mid-gray);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.sidebar-item a:hover {
+  color: var(--color-ink);
+  background-color: var(--color-soft-paper);
+}
+
+.sidebar-item.active a {
+  color: var(--color-forest);
+  background-color: rgba(24, 52, 43, 0.06);
+  font-weight: 600;
+}
+
+.sidebar-item.active a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  background-color: var(--color-copper);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Main Dashboard Area */
+.dashboard-main {
+  margin-left: 260px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Topbar */
+.dashboard-topbar {
+  height: 72px;
+  background-color: rgba(246, 243, 236, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 80;
+}
+
+.dashboard-search {
+  position: relative;
+  width: 320px;
+}
+
+.dashboard-search input {
+  height: 38px;
+  font-size: 13px;
+  padding-left: 36px;
+  border-radius: 20px;
+}
+
+.dashboard-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-mid-gray);
+}
+
+/* Dashboard Views */
+.dashboard-view {
+  padding: var(--space-6);
+  display: none;
+}
+
+.dashboard-view.active {
+  display: block;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-new { background-color: rgba(184, 107, 67, 0.12); color: var(--color-copper); }
+.badge-contacted { background-color: rgba(102, 127, 149, 0.12); color: var(--color-info); }
+.badge-qualified { background-color: rgba(92, 139, 107, 0.15); color: var(--color-success); }
+.badge-appointment { background-color: var(--color-forest); color: #F6F3EC; }
+.badge-won { background-color: #285043; color: #F6F3EC; }
+.badge-lost { background-color: var(--color-soft-paper); color: var(--color-mid-gray); }
+
+.badge-high { background-color: rgba(168, 90, 85, 0.12); color: var(--color-error); }
+.badge-medium { background-color: rgba(178, 138, 78, 0.12); color: var(--color-warning); }
+
+/* Lead Table */
+.lead-table-container {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-main);
+  overflow: hidden;
+}
+
+.lead-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.lead-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-mid-gray);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-soft-paper);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lead-table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.lead-table tr.lead-row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.lead-table tr.lead-row:hover {
+  background-color: rgba(24, 52, 43, 0.03);
+}
+
+.lead-details-row {
+  display: none;
+  background-color: var(--color-soft-paper);
+}
+
+.lead-details-row.open {
+  display: table-row;
+}
+
+.lead-details-content {
+  padding: var(--space-5);
+}
+
+/* Vertical Signal Line Customer Journey */
+.journey-timeline {
+  position: relative;
+  padding-left: 20px;
+  margin: var(--space-4) 0;
+}
+
+.journey-timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background-color: var(--color-copper);
+}
+
+.journey-step {
+  position: relative;
+  margin-bottom: var(--space-3);
+  font-size: 13px;
+}
+
+.journey-step::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-copper);
+  border: 2px solid var(--color-paper);
+}
+
+.journey-step.active::before {
+  background-color: var(--color-forest);
+  box-shadow: 0 0 6px var(--color-forest);
+}
+
+/* Kanban Board */
+.kanban-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-4);
+  overflow-x: auto;
+  padding-bottom: var(--space-4);
+}
+
+.kanban-col {
+  background-color: var(--color-soft-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  min-width: 220px;
+
+}
+
+.kanban-card {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.kanban-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-copper);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-sidebar {
+    width: 72px;
+  }
+  .sidebar-text {
+    display: none;
+  }
+  .dashboard-main {
+    margin-left: 72px;
+  }
+}
+
+

@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         design: resolve(__dirname, 'design.html'),
+        dashboard: resolve(__dirname, 'dashboard.html'),
         howItWorks: resolve(__dirname, 'how-it-works.html'),
         chatgptAds: resolve(__dirname, 'chatgpt-ads.html'),
         opportunity: resolve(__dirname, 'opportunity.html'),
