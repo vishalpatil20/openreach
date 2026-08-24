@@ -91,6 +91,27 @@
   --shadow-main: 0 12px 40px rgba(20, 20, 15, 0.06);
 }
 
+/* Global Dark Theme Overrides for showcase toggling */
+[data-theme="dark"] {
+  --color-bg: #10120F;            /* Deep Ink */
+  --color-paper: #171916;         /* Ink surface */
+  --color-soft-paper: #1F221E;
+  
+  --color-ink: #F6F3EC;           /* Warm Ivory text */
+  --color-deep-ink: #FCFAF5;
+  
+  --color-forest: #285043;        /* Lighten forest for dark mode contrast */
+  --color-forest-light: #3a6b5a;
+  
+  --color-copper: #D18A64;
+  --color-copper-light: #E0A080;
+  --color-copper-soft: rgba(209, 138, 100, 0.12);
+
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+  --shadow-main: 0 12px 40px rgba(0, 0, 0, 0.24);
+}
+
 /* Dark Section overrides (Used for Editorial rhythms) */
 .theme-dark-section {
   --color-bg: #10120F;            /* Deep Ink */

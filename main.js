@@ -1,5 +1,30 @@
 // ==========================================================================
-// 01 — VIEWPORT SIMULATOR
+// 01 — MULTI-THEME TOGGLER (FOR /DESIGN PREVIEWS)
+// ==========================================================================
+const showcaseThemeToggle = document.getElementById('showcaseThemeToggle');
+const rootElement = document.documentElement;
+
+if (showcaseThemeToggle) {
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  if (savedTheme === 'dark') {
+    rootElement.setAttribute('data-theme', 'dark');
+  }
+
+  showcaseThemeToggle.addEventListener('click', () => {
+    const isDark = rootElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      rootElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      rootElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+}
+
+// ==========================================================================
+// 02 — VIEWPORT SIMULATOR
 // ==========================================================================
 const simSlider = document.getElementById('simSlider');
 const simContainerBox = document.getElementById('simContainerBox');
@@ -14,10 +39,10 @@ if (simSlider && simContainerBox && simWidthLabel) {
 }
 
 // ==========================================================================
-// 02 — THE SIGNAL LINE DYNAMIC DOT ANIMATION
+// 03 — THE SIGNAL LINE DYNAMIC DOT ANIMATIONS
 // ==========================================================================
-const signalLineDot = document.getElementById('signalLineDot');
-if (signalLineDot) {
+const animateDotPath = (dotEl) => {
+  if (!dotEl) return;
   let progress = 0;
   let direction = 1;
   
@@ -28,14 +53,17 @@ if (signalLineDot) {
     } else if (progress <= 0) {
       direction = 1;
     }
-    signalLineDot.style.left = `${progress}%`;
+    dotEl.style.left = `${progress}%`;
     requestAnimationFrame(animateDot);
   };
   requestAnimationFrame(animateDot);
-}
+};
+
+animateDotPath(document.getElementById('signalLineDot'));
+animateDotPath(document.getElementById('comingSoonDot'));
 
 // ==========================================================================
-// 03 — DAMPED MAGNETIC BUTTONS
+// 04 — DAMPED MAGNETIC BUTTONS
 // ==========================================================================
 const makeButtonMagnetic = (btnEl) => {
   if (!btnEl) return;
@@ -71,9 +99,10 @@ const makeButtonMagnetic = (btnEl) => {
 makeButtonMagnetic(document.getElementById('heroMagneticBtn'));
 makeButtonMagnetic(document.getElementById('demoMagnetic'));
 makeButtonMagnetic(document.getElementById('magneticCta'));
+makeButtonMagnetic(document.getElementById('comingSoonCta'));
 
 // ==========================================================================
-// 04 — STATISTICS COUNTING ANIMATOR
+// 05 — STATISTICS COUNTING ANIMATOR
 // ==========================================================================
 const counterNum = document.getElementById('counterNum');
 if (counterNum) {
@@ -86,7 +115,6 @@ if (counterNum) {
     const elapsed = timestamp - start;
     const progress = Math.min(elapsed / animDuration, 1);
     
-    // Easing out quadratic function
     const ease = progress * (2 - progress);
     counterNum.textContent = Math.floor(ease * targetValue);
     
@@ -98,7 +126,7 @@ if (counterNum) {
 }
 
 // ==========================================================================
-// 05 — SCROLL REVEALS
+// 06 — SCROLL REVEALS
 // ==========================================================================
 const revealAnimBlock = document.getElementById('revealAnimBlock');
 if (revealAnimBlock) {
