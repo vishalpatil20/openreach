@@ -717,3 +717,96 @@ h4, .font-h4 {
   overflow-y: auto;
   background-color: var(--color-paper);
 }
+
+/* ==========================================================================
+   13 — TABS, FAQS & APPROACH TIMELINE SPECIFICS
+   ========================================================================== */
+#simulatorTabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  background-color: var(--color-soft-paper);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-5);
+  width: fit-content;
+}
+
+.segment-item {
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-mid-gray);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  outline: none;
+}
+
+.segment-item:hover {
+  color: var(--color-ink);
+}
+
+.segment-item.active {
+  background-color: var(--color-forest);
+  color: #F6F3EC;
+  box-shadow: 0 2px 8px rgba(24, 52, 43, 0.12);
+}
+
+/* FAQ Layout */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-4);
+}
+
+.faq-question {
+  font-family: var(--font-body);
+  font-size: var(--fs-h4);
+  color: var(--color-forest);
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.faq-answer {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-dark-gray);
+  line-height: 1.6;
+}
+
+/* Approach steps timeline */
+.approach-step {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  font-weight: 600;
+  color: var(--color-forest);
+  box-shadow: var(--shadow-main);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.approach-step:hover {
+  border-color: var(--color-copper);
+  transform: translateY(-1px);
+}
+
+.approach-arrow {
+  color: var(--color-copper);
+  font-weight: bold;
+}
+
