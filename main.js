@@ -1,220 +1,117 @@
 // ==========================================================================
-// 01 — THEME TOGGLE (DARK-FIRST SYSTEM)
+// 01 — VIEWPORT SIMULATOR
 // ==========================================================================
-const themeToggle = document.getElementById('themeToggle');
-const root = document.documentElement;
+const simSlider = document.getElementById('simSlider');
+const simContainerBox = document.getElementById('simContainerBox');
+const simWidthLabel = document.getElementById('simWidthLabel');
 
-// Read current theme state from localStorage
-const currentTheme = localStorage.getItem('theme') || 'dark';
-if (currentTheme === 'light') {
-  root.setAttribute('data-theme', 'light');
-}
-
-themeToggle.addEventListener('click', () => {
-  const isLight = root.getAttribute('data-theme') === 'light';
-  if (isLight) {
-    root.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    root.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-  }
-});
-
-// ==========================================================================
-// 02 — VIEWPORT SIMULATOR
-// ==========================================================================
-const viewportSlider = document.getElementById('viewportSlider');
-const simContainer = document.getElementById('simContainer');
-const viewportWidthLabel = document.getElementById('viewportWidthLabel');
-
-if (viewportSlider && simContainer && viewportWidthLabel) {
-  viewportSlider.addEventListener('input', (e) => {
+if (simSlider && simContainerBox && simWidthLabel) {
+  simSlider.addEventListener('input', (e) => {
     const width = e.target.value;
-    simContainer.style.width = `${width}px`;
-    viewportWidthLabel.textContent = `${width}px`;
+    simContainerBox.style.width = `${width}px`;
+    simWidthLabel.textContent = `${width}px`;
   });
 }
 
 // ==========================================================================
-// 03 — BACKGROUND ENVIRONMENT TOGGLES
+// 02 — THE SIGNAL LINE DYNAMIC DOT ANIMATION
 // ==========================================================================
-const toggleDots = document.getElementById('toggleDots');
-const toggleLines = document.getElementById('toggleLines');
-const toggleNoise = document.getElementById('toggleNoise');
-const toggleSpotlight = document.getElementById('toggleSpotlight');
-
-const dotGrid = document.getElementById('dotGrid');
-const lineGrid = document.getElementById('lineGrid');
-const noiseGrain = document.getElementById('noiseGrain');
-const spotlightGlow = document.getElementById('spotlightGlow');
-
-const toggleElement = (btn, el) => {
-  if (!el) return;
-  const isHidden = el.style.display === 'none';
-  el.style.display = isHidden ? 'block' : 'none';
-  btn.classList.toggle('active', !isHidden);
-};
-
-if (toggleDots) toggleDots.addEventListener('click', () => toggleElement(toggleDots, dotGrid));
-if (toggleLines) toggleLines.addEventListener('click', () => toggleElement(toggleLines, lineGrid));
-if (toggleNoise) toggleNoise.addEventListener('click', () => toggleElement(toggleNoise, noiseGrain));
-if (toggleSpotlight) toggleSpotlight.addEventListener('click', () => toggleElement(toggleSpotlight, spotlightGlow));
+const signalLineDot = document.getElementById('signalLineDot');
+if (signalLineDot) {
+  let progress = 0;
+  let direction = 1;
+  
+  const animateDot = () => {
+    progress += 0.15 * direction;
+    if (progress >= 100) {
+      direction = -1;
+    } else if (progress <= 0) {
+      direction = 1;
+    }
+    signalLineDot.style.left = `${progress}%`;
+    requestAnimationFrame(animateDot);
+  };
+  requestAnimationFrame(animateDot);
+}
 
 // ==========================================================================
-// 04 — OVERLAYS (MODAL, DRAWER & COMMAND BAR)
+// 03 — DAMPED MAGNETIC BUTTONS
 // ==========================================================================
-const modalOverlay = document.getElementById('modalOverlay');
-const drawerOverlay = document.getElementById('drawerOverlay');
-const cmdOverlay = document.getElementById('cmdOverlay');
-
-const triggerModal = document.getElementById('triggerModal');
-const triggerDrawer = document.getElementById('triggerDrawer');
-const triggerCommand = document.getElementById('triggerCommand');
-
-const closeModal = document.getElementById('closeModal');
-const confirmModal = document.getElementById('confirmModal');
-const closeDrawer = document.getElementById('closeDrawer');
-
-const openOverlay = (overlay) => {
-  if (overlay) overlay.classList.add('open');
-};
-
-const closeOverlay = (overlay) => {
-  if (overlay) overlay.classList.remove('open');
-};
-
-if (triggerModal) triggerModal.addEventListener('click', () => openOverlay(modalOverlay));
-if (triggerDrawer) triggerDrawer.addEventListener('click', () => openOverlay(drawerOverlay));
-if (triggerCommand) triggerCommand.addEventListener('click', () => openOverlay(cmdOverlay));
-
-if (closeModal) closeModal.addEventListener('click', () => closeOverlay(modalOverlay));
-if (confirmModal) confirmModal.addEventListener('click', () => closeOverlay(modalOverlay));
-if (closeDrawer) closeDrawer.addEventListener('click', () => closeOverlay(drawerOverlay));
-
-// Global Close for Overlays
-[modalOverlay, drawerOverlay, cmdOverlay].forEach(overlay => {
-  if (overlay) {
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closeOverlay(overlay);
-      }
-    });
-  }
-});
-
-// Keyboard listeners (ESC to close, CMD+K or CTRL+K to open Command Bar)
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeOverlay(modalOverlay);
-    closeOverlay(drawerOverlay);
-    closeOverlay(cmdOverlay);
-  }
-  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-    e.preventDefault();
-    openOverlay(cmdOverlay);
-    document.getElementById('cmdSearchInput')?.focus();
-  }
-});
-
-// ==========================================================================
-// 05 — PREMIUM MOTION & HOVER MICRO-INTERACTIONS
-// ==========================================================================
-
-// A. Magnetic Button Physics (Critically Damped Simulation)
-const magneticBtn = document.getElementById('magneticButton');
-if (magneticBtn) {
+const makeButtonMagnetic = (btnEl) => {
+  if (!btnEl) return;
   let targetX = 0, targetY = 0;
   let currentX = 0, currentY = 0;
   
-  magneticBtn.addEventListener('mousemove', (e) => {
-    const rect = magneticBtn.getBoundingClientRect();
+  btnEl.addEventListener('mousemove', (e) => {
+    const rect = btnEl.getBoundingClientRect();
     const btnCenterX = rect.left + rect.width / 2;
     const btnCenterY = rect.top + rect.height / 2;
     
-    // Calculate distance from center
     const dx = e.clientX - btnCenterX;
     const dy = e.clientY - btnCenterY;
     
-    // Magnetic pull threshold
     targetX = dx * 0.35;
     targetY = dy * 0.35;
   });
   
-  magneticBtn.addEventListener('mouseleave', () => {
+  btnEl.addEventListener('mouseleave', () => {
     targetX = 0;
     targetY = 0;
   });
   
-  // Animation Loop for Smooth Critically Damped Motion
-  const updateMagnetic = () => {
-    // Basic linear interpolation to simulate damping
+  const updateLoop = () => {
     currentX += (targetX - currentX) * 0.12;
     currentY += (targetY - currentY) * 0.12;
-    
-    magneticBtn.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-    requestAnimationFrame(updateMagnetic);
+    btnEl.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    requestAnimationFrame(updateLoop);
   };
-  updateMagnetic();
-}
+  updateLoop();
+};
 
-// B. Card Cursor Spotlight tracking
-const spotlightCard = document.getElementById('spotlightCard');
-if (spotlightCard) {
-  spotlightCard.addEventListener('mousemove', (e) => {
-    const rect = spotlightCard.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Update inline spotlight gradient coordinates
-    spotlightCard.style.backgroundImage = `radial-gradient(circle 120px at ${x}px ${y}px, var(--color-accent-soft) 0%, transparent 100%)`;
-    spotlightCard.style.borderColor = 'var(--color-accent)';
-  });
-  
-  spotlightCard.addEventListener('mouseleave', () => {
-    spotlightCard.style.backgroundImage = 'none';
-    spotlightCard.style.borderColor = 'var(--color-border-subtle)';
-  });
-}
+makeButtonMagnetic(document.getElementById('heroMagneticBtn'));
+makeButtonMagnetic(document.getElementById('demoMagnetic'));
+makeButtonMagnetic(document.getElementById('magneticCta'));
 
-// C. Number Counting animation for KPIs
-const countingStat = document.getElementById('countingStat');
-if (countingStat) {
-  const targetVal = 247;
-  const duration = 1500; // ms
-  let startTimestamp = null;
+// ==========================================================================
+// 04 — STATISTICS COUNTING ANIMATOR
+// ==========================================================================
+const counterNum = document.getElementById('counterNum');
+if (counterNum) {
+  const targetValue = 247;
+  const animDuration = 1800; // ms
+  let start = null;
   
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+  const runCounter = (timestamp) => {
+    if (!start) start = timestamp;
+    const elapsed = timestamp - start;
+    const progress = Math.min(elapsed / animDuration, 1);
     
     // Easing out quadratic function
-    const easeProgress = progress * (2 - progress);
-    countingStat.textContent = Math.floor(easeProgress * targetVal);
+    const ease = progress * (2 - progress);
+    counterNum.textContent = Math.floor(ease * targetValue);
     
     if (progress < 1) {
-      window.requestAnimationFrame(step);
+      requestAnimationFrame(runCounter);
     }
   };
-  
-  // Trigger counting animation on page load
-  window.requestAnimationFrame(step);
+  requestAnimationFrame(runCounter);
 }
 
-// D. Scroll Reveal transition
-const scrollRevealDemo = document.getElementById('scrollRevealDemo');
-if (scrollRevealDemo) {
+// ==========================================================================
+// 05 — SCROLL REVEALS
+// ==========================================================================
+const revealAnimBlock = document.getElementById('revealAnimBlock');
+if (revealAnimBlock) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        scrollRevealDemo.style.opacity = '1';
-        scrollRevealDemo.style.transform = 'translateY(0)';
+        revealAnimBlock.style.opacity = '1';
+        revealAnimBlock.style.transform = 'translateY(0)';
       } else {
-        scrollRevealDemo.style.opacity = '0.4';
-        scrollRevealDemo.style.transform = 'translateY(8px)';
+        revealAnimBlock.style.opacity = '0.5';
+        revealAnimBlock.style.transform = 'translateY(8px)';
       }
     });
-  }, { threshold: 0.1 });
-  
-  observer.observe(scrollRevealDemo);
+  }, { threshold: 0.15 });
+  observer.observe(revealAnimBlock);
 }
