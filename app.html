@@ -95,12 +95,19 @@
           </li>
         </ul>
       </div>
-
       <div style="padding: 0 var(--space-5);">
         <div class="card" style="padding: var(--space-3); font-size: 11px;" class="font-mono">
           <span style="color: var(--color-copper); font-weight: 600; display:block;">DEMO ACCOUNT</span>
           <span style="color: var(--color-mid-gray);">Smith Dental Clinic</span>
         </div>
+      </div>
+
+      <div style="padding: 0 var(--space-5); margin-top: var(--space-3); margin-bottom: var(--space-4);">
+        <button id="themeToggleBtn" class="btn btn-secondary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; height: 36px; padding: 0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sun-icon" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span id="themeToggleText">Switch to Dark Mode</span>
+        </button>
       </div>
     </aside>
 
@@ -769,6 +776,37 @@
 
     window.addEventListener('DOMContentLoaded', populateVisitorLogs);
     setInterval(populateVisitorLogs, 2500);
+
+    // Theme Mode Toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeToggleText = document.getElementById('themeToggleText');
+    const sunIcon = themeToggleBtn.querySelector('.sun-icon');
+    const moonIcon = themeToggleBtn.querySelector('.moon-icon');
+
+    // Load saved theme or default to light
+    const currentTheme = localStorage.getItem('openreach_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeUI(currentTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('openreach_theme', newTheme);
+      updateThemeUI(newTheme);
+    });
+
+    function updateThemeUI(theme) {
+      if (theme === 'dark') {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+        themeToggleText.textContent = 'Light Mode';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+        themeToggleText.textContent = 'Dark Mode';
+      }
+    }
   </script>
 </body>
 </html>
