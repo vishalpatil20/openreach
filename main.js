@@ -394,3 +394,56 @@ if (simSlider && simContainerBox && simWidthLabel) {
     simWidthLabel.textContent = `${width}px`;
   });
 }
+
+// ==========================================================================
+// 08 — DYNAMIC PATHWAY REDIRECTION/PREFILL LOGIC FOR OPPORTUNITY FORM
+// ==========================================================================
+const auditIndustrySelect = document.getElementById('auditIndustry');
+const opportunityHeading = document.getElementById('opportunityHeading');
+
+if (auditIndustrySelect) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlIndustry = urlParams.get('industry');
+  if (urlIndustry) {
+    const normalized = urlIndustry.toLowerCase().replace(/[^a-z]/g, '');
+    for (let i = 0; i < auditIndustrySelect.options.length; i++) {
+      const optionVal = auditIndustrySelect.options[i].value;
+      const optionNormalized = optionVal.toLowerCase().replace(/[^a-z]/g, '');
+      if (optionNormalized === normalized) {
+        auditIndustrySelect.selectedIndex = i;
+        
+        // Update placeholders based on selected industry
+        const bizNameInput = document.getElementById('auditBizName');
+        const bizUrlInput = document.getElementById('auditWebsite');
+        if (bizNameInput && bizUrlInput) {
+          if (normalized === 'dental') {
+            bizNameInput.placeholder = 'e.g. Austin Dental Care';
+            bizUrlInput.placeholder = 'e.g. austindentistry.com';
+          } else if (normalized === 'hvac') {
+            bizNameInput.placeholder = 'e.g. Austin Air Solutions';
+            bizUrlInput.placeholder = 'e.g. austinairsolutions.com';
+          } else if (normalized === 'roofing') {
+            bizNameInput.placeholder = 'e.g. Apex Roofing Specialists';
+            bizUrlInput.placeholder = 'e.g. apexroofingtx.com';
+          } else if (normalized === 'remodeling') {
+            bizNameInput.placeholder = 'e.g. Precision Remodeling';
+            bizUrlInput.placeholder = 'e.g. precisionremodel.com';
+          } else if (normalized === 'medspa') {
+            bizNameInput.placeholder = 'e.g. Radiant Med Spa';
+            bizUrlInput.placeholder = 'e.g. radiantmedspa.com';
+          } else if (normalized === 'automotive') {
+            bizNameInput.placeholder = 'e.g. Vanguard Luxury Motors';
+            bizUrlInput.placeholder = 'e.g. vanguardluxury.com';
+          }
+        }
+
+        // Tailor heading to maintain industry context
+        if (opportunityHeading) {
+          opportunityHeading.textContent = `What is your ${optionVal} market already asking?`;
+        }
+        break;
+      }
+    }
+  }
+}
+
