@@ -14,7 +14,6 @@ export default defineConfig({
         chatgptAdsAgency: resolve(__dirname, 'chatgpt-ads-agency.html'),
         aiAdvertising: resolve(__dirname, 'ai-advertising.html'),
         platform: resolve(__dirname, 'platform.html'),
-        opportunity: resolve(__dirname, 'opportunity.html'),
         about: resolve(__dirname, 'about.html'),
         insights: resolve(__dirname, 'insights.html'),
         insightsHowToAdvertise: resolve(__dirname, 'insights/how-to-advertise-on-chatgpt.html'),

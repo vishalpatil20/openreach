@@ -290,9 +290,9 @@ const runSimulation = (category) => {
                 <div class="chatgpt-sponsored-logo">${data.sponsored.logo}</div>
                 <div class="chatgpt-sponsored-brand-name">${data.sponsored.name}</div>
               </div>
-              <a href="/opportunity" class="chatgpt-sponsored-headline">${data.sponsored.headline}</a>
+              <a href="/#audit-form-sec" class="chatgpt-sponsored-headline">${data.sponsored.headline}</a>
               <div class="chatgpt-sponsored-description">${data.sponsored.description}</div>
-              <a href="/opportunity" class="chatgpt-sponsored-cta">
+              <a href="/#audit-form-sec" class="chatgpt-sponsored-cta">
                 Visit Website
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -349,12 +349,15 @@ const setupFormSubmit = (formId, successStateId) => {
       successState.style.display = 'flex';
       successState.style.flexDirection = 'column';
       successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      setTimeout(() => {
+        window.location.href = "https://cal.id/vishal-openreach/openreach-meeting";
+      }, 1800);
     });
   }
 };
 
 setupFormSubmit('homepageAuditForm', 'formSuccessState');
-setupFormSubmit('standaloneAuditForm', 'standaloneSuccessState');
 
 // ==========================================================================
 // 06 — STATISTICS COUNTING ANIMATOR
