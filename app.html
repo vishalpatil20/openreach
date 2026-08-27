@@ -17,6 +17,7 @@
   <div class="dashboard-container">
     <!-- Left Sidebar -->
     <aside class="dashboard-sidebar">
+      <div>
         <div class="sidebar-brand">
           <a href="https://openreach.agency" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none; color: var(--color-ink);" aria-label="OpenReach.agency Homepage">
         <svg height="36" viewBox="0 0 1300 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; width: auto; max-width: 230px;">
@@ -138,9 +139,24 @@
             <span style="position: absolute; top: 4px; right: 4px; width: 8px; height: 8px; background-color: var(--color-copper); border-radius: 50%;"></span>
           </button>
 
-          <div style="display: flex; align-items: center; gap: var(--space-2);">
-            <div style="width: 34px; height: 34px; border-radius: 50%; background-color: var(--color-forest); color: #F6F3EC; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">
-              DS
+          <div class="profile-dropdown-wrapper" style="position: relative;">
+            <button id="profileDropdownTrigger" style="background: transparent; border: none; padding: 0; cursor: pointer; border-radius: 50%; outline: none; display: flex; align-items: center;">
+              <div style="width: 34px; height: 34px; border-radius: 50%; background-color: var(--color-forest); color: #F6F3EC; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">
+                DS
+              </div>
+            </button>
+            
+            <!-- Profile Dropdown Menu -->
+            <div id="profileDropdownMenu" class="card" style="display: none; position: absolute; top: 46px; right: 0; width: 190px; z-index: 100; padding: var(--space-2) 0; border-radius: var(--radius-sm); border: 1px solid var(--color-border); box-shadow: var(--shadow-main); flex-direction: column; background-color: var(--color-paper);">
+              <span style="font-family: var(--font-mono); font-size: 9px; color: var(--color-copper); padding: var(--space-2) var(--space-4); display: block; text-transform: uppercase; letter-spacing: 0.05em;">Theme Preference</span>
+              <button class="dropdown-item" id="themeSelectLight" style="display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: var(--space-2) var(--space-4); border: none; background: transparent; cursor: pointer; font-size: 13px; color: var(--color-ink); font-family: var(--font-body);">
+                <span>☀️</span> Light Mode
+              </button>
+              <button class="dropdown-item" id="themeSelectDark" style="display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: var(--space-2) var(--space-4); border: none; background: transparent; cursor: pointer; font-size: 13px; color: var(--color-ink); font-family: var(--font-body);">
+                <span>🌙</span> Dark Mode
+              </button>
+              <hr style="border: none; border-top: 1px solid var(--color-border); margin: var(--space-2) 0;">
+              <a href="#settings" class="dropdown-item" id="dropdownGoToSettings" style="display: block; padding: var(--space-2) var(--space-4); font-size: 13px; color: var(--color-ink); text-decoration: none; font-family: var(--font-body);">⚙️ Client Settings</a>
             </div>
           </div>
         </div>
@@ -805,6 +821,54 @@
         sunIcon.style.display = 'none';
         moonIcon.style.display = 'block';
         themeToggleText.textContent = 'Dark Mode';
+      }
+    }
+
+    // Profile Dropdown Toggle
+    const profileDropdownTrigger = document.getElementById('profileDropdownTrigger');
+    const profileDropdownMenu = document.getElementById('profileDropdownMenu');
+
+    if (profileDropdownTrigger && profileDropdownMenu) {
+      profileDropdownTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = profileDropdownMenu.style.display === 'none' || profileDropdownMenu.style.display === '';
+        profileDropdownMenu.style.display = isHidden ? 'flex' : 'none';
+      });
+
+      document.addEventListener('click', () => {
+        profileDropdownMenu.style.display = 'none';
+      });
+
+      // Light Theme selector inside dropdown
+      const themeSelectLight = document.getElementById('themeSelectLight');
+      if (themeSelectLight) {
+        themeSelectLight.addEventListener('click', () => {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('openreach_theme', 'light');
+          updateThemeUI('light');
+        });
+      }
+
+      // Dark Theme selector inside dropdown
+      const themeSelectDark = document.getElementById('themeSelectDark');
+      if (themeSelectDark) {
+        themeSelectDark.addEventListener('click', () => {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('openreach_theme', 'dark');
+          updateThemeUI('dark');
+        });
+      }
+
+      // Settings redirect inside dropdown
+      const dropdownGoToSettings = document.getElementById('dropdownGoToSettings');
+      if (dropdownGoToSettings) {
+        dropdownGoToSettings.addEventListener('click', (e) => {
+          e.preventDefault();
+          const settingsSidebarItem = document.querySelector('.sidebar-item[data-tab="settings"]');
+          if (settingsSidebarItem) {
+            settingsSidebarItem.click();
+          }
+        });
       }
     }
   </script>
