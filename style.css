@@ -1736,6 +1736,22 @@ h4, .font-h4 {
   header {
     padding-top: 100px !important;
   }
+
+  .hero-buttons-container {
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+    align-items: stretch !important;
+    max-width: 340px;
+    margin: 0 auto var(--space-6) auto !important;
+  }
+
+  .hero-buttons-container .btn {
+    width: 100% !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
 }
 
 /* Dedicated close button inside fullscreen overlay */
