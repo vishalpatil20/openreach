@@ -1105,6 +1105,18 @@ h4, .font-h4 {
   .dashboard-main {
     margin-left: 72px;
   }
+  .dashboard-sidebar .card,
+  .dashboard-sidebar .sidebar-brand span,
+  #themeToggleText {
+    display: none !important;
+  }
+  #themeToggleBtn {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
 }
 
 /* ==========================================================================
@@ -1222,6 +1234,18 @@ h4, .font-h4 {
 
   .sidebar-text {
     display: inline !important;
+  }
+
+  #themeToggleText {
+    display: inline !important;
+  }
+
+  #themeToggleBtn {
+    width: auto !important;
+    height: 38px !important;
+    border-radius: var(--radius-xs) !important;
+    margin: var(--space-2) var(--space-4) !important;
+    padding: 0 var(--space-3) !important;
   }
 
   .dashboard-main {
