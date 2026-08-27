@@ -186,33 +186,37 @@
         <h2 class="font-h1" style="color: var(--color-forest);">What could this look like for your business?</h2>
       </div>
 
-      <div class="card" style="padding: var(--space-5);">
-        <div id="simulatorTabs">
-          <button class="segment-item active" data-industry="dental">Dental</button>
-          <button class="segment-item" data-industry="hvac">HVAC</button>
-          <button class="segment-item" data-industry="roofing">Roofing</button>
-          <button class="segment-item" data-industry="remodeling">Remodeling</button>
-          <button class="segment-item" data-industry="medspa">Med Spa</button>
-          <button class="segment-item" data-industry="automotive">Automotive</button>
+      <div class="card" style="padding: var(--space-5); max-width: 850px; margin: 0 auto;">
+        <div style="display: flex; justify-content: center; margin-bottom: var(--space-4);">
+          <div id="simulatorTabs">
+            <button class="segment-item active" data-industry="dental">Dental</button>
+            <button class="segment-item" data-industry="hvac">HVAC</button>
+            <button class="segment-item" data-industry="roofing">Roofing</button>
+            <button class="segment-item" data-industry="remodeling">Remodeling</button>
+            <button class="segment-item" data-industry="medspa">Med Spa</button>
+            <button class="segment-item" data-industry="automotive">Automotive</button>
+          </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: var(--space-4);" class="font-mono">
-          <div style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-2);">
-            <span style="font-size: 10px; color: var(--color-mid-gray); display:block;">CUSTOMER QUESTION</span>
-            <span id="simQuestionText" style="font-size: 15px; color: var(--color-ink); font-weight:600;">"What's the best dentist near me for dental implants?"</span>
+        <!-- ChatGPT Simulated Chat Window -->
+        <div class="chatgpt-mock-container">
+          <div class="chatgpt-mock-header">
+            <div class="chatgpt-mock-header-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #10a37f;">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+              </svg>
+              <span style="font-weight: 600;">ChatGPT Search</span>
+            </div>
+            <div style="font-size: 11px; font-family: var(--font-mono); color: #8e8e8e;">AD discovery simulator</div>
           </div>
-          <div style="border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-2);">
-            <span style="font-size: 10px; color: var(--color-mid-gray); display:block;">BUYING MOMENT</span>
-            <span id="simStageText" style="font-size: 15px; color: var(--color-ink);">Comparing providers</span>
-          </div>
-          <div>
-            <span style="font-size: 10px; color: var(--color-mid-gray); display:block;">YOUR OPPORTUNITY</span>
-            <span id="simOppText" style="font-size: 15px; color: var(--color-forest); font-weight:600;">Reach people already considering a local provider.</span>
+          <div class="chatgpt-mock-body" id="chatgptMockBody">
+            <!-- Dynamic chat simulation loaded via main.js -->
           </div>
         </div>
 
         <div style="text-align: center; margin-top: var(--space-5);">
-          <a href="/opportunity" class="btn btn-primary" id="simActionTextBtn">Show Me Mine &rarr;</a>
+          <a href="/opportunity" class="btn btn-primary" id="simActionTextBtn">Get My Custom Opportunity Report &rarr;</a>
         </div>
       </div>
     </div>
