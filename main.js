@@ -316,10 +316,15 @@ const setupFormSubmit = (formId, successStateId) => {
   if (form && successState) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      form.style.display = 'none';
+      const auditGrid = document.getElementById('auditGridContainer');
+      if (auditGrid) {
+        auditGrid.style.display = 'none';
+      } else {
+        form.style.display = 'none';
+      }
       successState.style.display = 'flex';
       successState.style.flexDirection = 'column';
-      successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      successState.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 };

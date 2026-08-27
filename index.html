@@ -350,7 +350,8 @@
   <!-- Section 08: See What Your Customers Are Asking (Audit form) -->
   <section id="audit-form-sec" style="padding: var(--space-10) 0; border-bottom: 1px solid var(--color-border);">
     <div class="container">
-      <div class="grid-12">
+      <!-- Split columns for form entry (hidden on success) -->
+      <div class="grid-12" id="auditGridContainer">
         <div class="col-4">
           <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper);">08 / AUDIT CHECK</span>
           <h2 class="font-h2" style="margin-top: var(--space-2); color: var(--color-forest);">See what your customers are asking.</h2>
@@ -374,17 +375,17 @@
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Show Me The Opportunity &rarr;</button>
           </form>
+        </div>
+      </div>
 
-          <!-- Success State -->
-          <div class="card" id="formSuccessState" style="display: none; max-width: 600px; width: 100%; border-color: var(--color-success); padding: var(--space-4); text-align: center; flex-direction: column; align-items: center; gap: var(--space-3); margin: 0 auto;">
-            <h4 class="font-h4" style="color: var(--color-forest); margin: 0;">Opportunity Captured!</h4>
-            <p class="font-body-sm" style="color: var(--color-dark-gray); margin: 0;">
-              Schedule your Live Audit call directly below:
-            </p>
-            <div style="width: 100%; height: 500px; border-radius: 8px; overflow: hidden; border: 1px solid var(--color-border); background: #fff;">
-              <iframe src="https://cal.id/vishal-openreach/openreach-meeting" style="width: 100%; height: 100%; border: none;" allow="camera; microphone; geolocation; clipboard-write"></iframe>
-            </div>
-          </div>
+      <!-- Centered Wide Success State (Shown on success) -->
+      <div class="card" id="formSuccessState" style="display: none; max-width: 950px; width: 100%; border-color: var(--color-success); padding: var(--space-6); text-align: center; flex-direction: column; align-items: center; gap: var(--space-4); margin: 0 auto;">
+        <h4 class="font-h4" style="color: var(--color-forest); margin: 0; font-size: 26px; font-family: var(--font-display);">Opportunity Captured!</h4>
+        <p class="font-body-sm" style="color: var(--color-dark-gray); margin-bottom: var(--space-2);">
+          Schedule your Live Audit call directly below:
+        </p>
+        <div style="width: 100%; height: 680px; border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border); background: #fff; box-shadow: 0 4px 30px rgba(0,0,0,0.03);">
+          <iframe src="https://cal.id/vishal-openreach/openreach-meeting" style="width: 100%; height: 100%; border: none;" allow="camera; microphone; geolocation; clipboard-write"></iframe>
         </div>
       </div>
     </div>
