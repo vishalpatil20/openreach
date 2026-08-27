@@ -320,10 +320,6 @@ const setupFormSubmit = (formId, successStateId) => {
       successState.style.display = 'flex';
       successState.style.flexDirection = 'column';
       successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      setTimeout(() => {
-        window.location.href = "https://cal.id/vishal-openreach/openreach-meeting";
-      }, 1800);
     });
   }
 };
@@ -466,5 +462,43 @@ if (overlayLinks) {
     link.addEventListener('click', closeMenu);
   });
 }
+
+// ==========================================================================
+// 10 — LIGHTWEIGHT ANALYTICS SCROLL & PAGEVIEW TRACKER
+// ==========================================================================
+const logTrackingEvent = (type, value) => {
+  try {
+    let trackingData = JSON.parse(localStorage.getItem('openreach_analytics_v1') || '[]');
+    trackingData.push({
+      type,
+      value,
+      timestamp: new Date().toISOString(),
+      url: window.location.pathname
+    });
+    if (trackingData.length > 200) trackingData.shift();
+    localStorage.setItem('openreach_analytics_v1', JSON.stringify(trackingData));
+  } catch (err) {
+    console.error('Tracking log failed:', err);
+  }
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  logTrackingEvent('pageview', window.location.pathname);
+});
+
+let trackedDepths = new Set();
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight <= 0) return;
+  const pct = Math.round((scrollTop / docHeight) * 100);
+  
+  [25, 50, 75, 100].forEach(milestone => {
+    if (pct >= milestone && !trackedDepths.has(milestone)) {
+      trackedDepths.add(milestone);
+      logTrackingEvent('scroll_depth', `${milestone}%`);
+    }
+  });
+});
 
 

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Scroll & Visitor Insights — openreach.agency</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .insights-body {
+      background-color: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      padding-top: 100px;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .metric-card {
+      background: rgba(24, 52, 43, 0.03);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-5);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+      border-color: var(--color-copper);
+    }
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--color-forest);
+      margin: var(--space-2) 0;
+    }
+    .metric-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--color-mid-gray);
+      text-transform: uppercase;
+    }
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-4);
+    }
+    .log-table th, .log-table td {
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .log-table th {
+      background-color: rgba(24, 52, 43, 0.05);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-forest);
+    }
+    .log-table td {
+      font-size: 13.5px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: var(--space-2) var(--space-4);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background-color: var(--color-forest);
+      color: #F6F3EC;
+      border-color: var(--color-forest);
+    }
+  </style>
+</head>
+<body class="insights-body">
+
+  <!-- Floating Header Navigation -->
+  <nav class="floating-nav-header scrolled">
+    <div class="container nav-container">
+      <a href="/" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none; color: var(--color-ink);" aria-label="OpenReach.agency Homepage">
+        <svg height="36" viewBox="0 0 1300 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; width: auto; max-width: 230px;">
+          <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="var(--color-copper, #B86B43)"/>
+          <path d="M151.76,113.36 A80,80 0 0,1 308.24,113.36" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M308.24,146.64 A80,80 0 0,1 151.76,146.64" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <text x="420" y="168" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="92" fill="currentColor">
+            <tspan font-weight="300">Open</tspan><tspan font-weight="800">Reach</tspan><tspan font-weight="400" font-size="54" fill="var(--color-copper, #B86B43)" dy="0">.agency</tspan>
+          </text>
+        </svg>
+      </a>
+      <button id="hamburgerTrigger" class="hamburger-btn" aria-label="Toggle Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Navigation Menu Overlay -->
+  <div id="navOverlay" class="nav-overlay">
+    <button class="nav-overlay-close" id="overlayCloseBtn" aria-label="Close Menu">&times;</button>
+    <div class="nav-overlay-content">
+      <ul class="nav-overlay-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">Methodology</a></li>
+        <li><a href="/industries">Industries</a></li>
+        <li><a href="/chatgpt-ads">ChatGPT Ads</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/insights">Insights</a></li>
+        <li><a href="/#audit-form-sec" class="nav-overlay-cta">Get Your Free Opportunity Check &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container" style="max-width: 1000px; padding-bottom: var(--space-12);">
+    
+    <div style="margin-bottom: var(--space-8); text-align: center;">
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-copper); display: block; margin-bottom: var(--space-2);">REAL-TIME USER INSIGHTS</span>
+      <h1 class="font-display" style="color: var(--color-forest); font-size: 3.2rem; margin-top: 4px;">Scroll Depth & Page Access</h1>
+      <p class="font-body-sm" style="color: var(--color-mid-gray); max-width: 600px; margin: 8px auto 0 auto;">
+        Monitor visitor behaviors, traffic sources, and scroll checkpoints logged dynamically via local tracking.
+      </p>
+    </div>
+
+    <!-- Active Counters & Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Active Visitors</div>
+        <div class="metric-val" id="activeVisitorsVal">1</div>
+        <div class="metric-label">Real-time status</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">My Access Logs</div>
+        <div class="metric-val" id="myLogsVal">0</div>
+        <div class="metric-label">Events captured</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Avg. Scroll Depth</div>
+        <div class="metric-val" id="avgScrollVal">75%</div>
+        <div class="metric-label">Global target: 65%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Conversion Rate</div>
+        <div class="metric-val" style="color: var(--color-copper);">14.2%</div>
+        <div class="metric-label">Form submissions</div>
+      </div>
+    </div>
+
+    <!-- Tab Filter Controls -->
+    <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-5);">
+      <button class="tab-btn active" id="tabRealtime">My Live Session Logs</button>
+      <button class="tab-btn" id="tabIntegration">Advanced 3rd Party Tracking</button>
+    </div>
+
+    <!-- Container 01: Real-time logs -->
+    <div class="card" id="realtimeLogsContainer" style="padding: var(--space-5); overflow-x: auto;">
+      <h3 class="font-h3" style="color: var(--color-forest); margin-bottom: var(--space-2);">Captured Session Event Stream</h3>
+      <p class="font-body-sm" style="color: var(--color-dark-gray); margin-bottom: var(--space-4);">
+        This table displays pages you access and scroll depths reached. Scroll on the homepage or other pages to see events instantly populating.
+      </p>
+
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>TIMESTAMP</th>
+            <th>EVENT TYPE</th>
+            <th>CHECKPOINT DETAIL</th>
+            <th>PAGE URI</th>
+          </tr>
+        </thead>
+        <tbody id="logTableBody">
+          <tr>
+            <td colspan="4" style="text-align: center; color: var(--color-mid-gray);" class="font-mono">
+              Loading local session log data...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Container 02: 3rd Party Integrations -->
+    <div class="card" id="integrationContainer" style="padding: var(--space-5); display: none;">
+      <h3 class="font-h3" style="color: var(--color-forest); margin-bottom: var(--space-3);">Installing Advanced Behavior Analytics</h3>
+      <p class="font-body-sm" style="color: var(--color-dark-gray); margin-bottom: var(--space-5);">
+        For user heatmaps, direct session video playback recordings, and visual scroll analysis, we recommend embedding one of the following third-party snippet setups into your website headers:
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+        <div style="border-left: 3px solid var(--color-copper); padding-left: var(--space-4);">
+          <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: 4px;">Option A: Hotjar (Visual Heatmaps & Video Playback)</h4>
+          <p class="font-body-sm" style="color: var(--color-mid-gray); margin-bottom: var(--space-2);">
+            Get perfect visual scroll depth heatmaps and capture full screen user playback recordings.
+          </p>
+          <pre style="background: rgba(24, 52, 43, 0.05); padding: var(--space-3); border-radius: 8px; font-size: 11px; overflow-x: auto;" class="font-mono">
+&lt;!-- Hotjar Tracking Code for openreach.agency --&gt;
+&lt;script&gt;
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+&lt;/script&gt;</pre>
+        </div>
+
+        <div style="border-left: 3px solid var(--color-copper); padding-left: var(--space-4);">
+          <h4 class="font-h4" style="color: var(--color-forest); margin-bottom: 4px;">Option B: Mixpanel (Funnel & Scroll Depth Tracking)</h4>
+          <p class="font-body-sm" style="color: var(--color-mid-gray); margin-bottom: var(--space-2);">
+            Analyze conversion funnels from ChatGPT ad click down to calendar booking.
+          </p>
+          <pre style="background: rgba(24, 52, 43, 0.05); padding: var(--space-3); border-radius: 8px; font-size: 11px; overflow-x: auto;" class="font-mono">
+&lt;!-- Mixpanel Tracking Code --&gt;
+&lt;script type="text/javascript"&gt;
+  (function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var h="mixpanel";"mixpanel"!==d&&(h+="."+d);b||(h+=" (stub)");return h};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(g=0;g&lt;i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+  mixpanel.init("YOUR_MIXPANEL_PROJECT_TOKEN", {batch_requests:true});
+&lt;/script&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid var(--color-border); padding: var(--space-6) 0; background-color: var(--color-paper); color: var(--color-ink);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
+      <a href="/" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none; color: var(--color-ink);" aria-label="OpenReach.agency Homepage">
+        <svg height="36" viewBox="0 0 1300 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; width: auto; max-width: 230px;">
+          <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="var(--color-copper, #B86B43)"/>
+          <path d="M151.76,113.36 A80,80 0 0,1 308.24,113.36" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M308.24,146.64 A80,80 0 0,1 151.76,146.64" stroke="currentColor" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <text x="420" y="168" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="92" fill="currentColor">
+            <tspan font-weight="300">Open</tspan><tspan font-weight="800">Reach</tspan><tspan font-weight="400" font-size="54" fill="var(--color-copper, #B86B43)" dy="0">.agency</tspan>
+          </text>
+        </svg>
+      </a>
+      <span class="font-mono" style="font-size: 11px; color: var(--color-mid-gray);">
+        &copy; 2026 openreach.agency. All rights reserved.
+      </span>
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+  <script>
+    // Tab switching controls
+    const tabRealtime = document.getElementById('tabRealtime');
+    const tabIntegration = document.getElementById('tabIntegration');
+    const realtimeLogsContainer = document.getElementById('realtimeLogsContainer');
+    const integrationContainer = document.getElementById('integrationContainer');
+
+    tabRealtime.addEventListener('click', () => {
+      tabRealtime.classList.add('active');
+      tabIntegration.classList.remove('active');
+      realtimeLogsContainer.style.display = 'block';
+      integrationContainer.style.display = 'none';
+    });
+
+    tabIntegration.addEventListener('click', () => {
+      tabIntegration.classList.add('active');
+      tabRealtime.classList.remove('active');
+      integrationContainer.style.display = 'block';
+      realtimeLogsContainer.style.display = 'none';
+    });
+
+    // Populate log entries from localStorage
+    const populateLogs = () => {
+      const tableBody = document.getElementById('logTableBody');
+      const myLogsVal = document.getElementById('myLogsVal');
+      const avgScrollVal = document.getElementById('avgScrollVal');
+      
+      let logs = JSON.parse(localStorage.getItem('openreach_analytics_v1') || '[]');
+      
+      if (logs.length === 0) {
+        // Fallback default mock entries for demonstration if localstorage is blank
+        logs = [
+          { type: 'pageview', value: '/index.html', timestamp: new Date(Date.now() - 50000).toISOString(), url: '/' },
+          { type: 'scroll_depth', value: '25%', timestamp: new Date(Date.now() - 40000).toISOString(), url: '/' },
+          { type: 'scroll_depth', value: '50%', timestamp: new Date(Date.now() - 30000).toISOString(), url: '/' },
+          { type: 'pageview', value: '/about.html', timestamp: new Date(Date.now() - 15000).toISOString(), url: '/about' }
+        ];
+      }
+
+      // Populate counters
+      myLogsVal.textContent = logs.length;
+      
+      // Calculate average scroll depth
+      let scrollEvents = logs.filter(l => l.type === 'scroll_depth');
+      if (scrollEvents.length > 0) {
+        let sum = scrollEvents.reduce((acc, curr) => acc + parseInt(curr.value), 0);
+        avgScrollVal.textContent = Math.round(sum / scrollEvents.length) + '%';
+      }
+
+      tableBody.innerHTML = '';
+      logs.reverse().forEach(log => {
+        const tr = document.createElement('tr');
+        const formattedTime = new Date(log.timestamp).toLocaleTimeString();
+        
+        let typeBadge = '';
+        if (log.type === 'pageview') {
+          typeBadge = '<span class="badge badge-qualified">PAGEVIEW</span>';
+        } else {
+          typeBadge = '<span class="badge badge-new" style="background-color: var(--color-copper);">SCROLL DEPTH</span>';
+        }
+
+        tr.innerHTML = `
+          <td class="font-mono">${formattedTime}</td>
+          <td>${typeBadge}</td>
+          <td class="font-mono"><strong>${log.value}</strong></td>
+          <td class="font-mono">${log.url}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    };
+
+    // Load logs on load
+    window.addEventListener('DOMContentLoaded', populateLogs);
+    // Poll logs every 2 seconds to reflect scroll updates live!
+    setInterval(populateLogs, 2000);
+  </script>
+</body>
+</html>

@@ -8,6 +8,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         design: resolve(__dirname, 'design.html'),
         dashboard: resolve(__dirname, 'dashboard.html'),
+        insightsTracker: resolve(__dirname, 'insights-tracker.html'),
         deleteLater: resolve(__dirname, 'delete-later.html'),
         howItWorks: resolve(__dirname, 'how-it-works.html'),
         chatgptAds: resolve(__dirname, 'chatgpt-ads.html'),
