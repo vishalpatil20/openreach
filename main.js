@@ -422,28 +422,48 @@ if (auditIndustrySelect) {
 }
 
 // ==========================================================================
-// 09 — HAMBURGER MENU OVERLAY TRIGGER CONTROLS
+// 09 — FLOATING HEADER SCROLL & OVERLAY CONTROLS
 // ==========================================================================
+const headerEl = document.querySelector('.floating-nav-header');
+if (headerEl) {
+  const handleScroll = () => {
+    if (window.scrollY > 20) {
+      headerEl.classList.add('scrolled');
+    } else {
+      headerEl.classList.remove('scrolled');
+    }
+  };
+  window.addEventListener('scroll', handleScroll);
+  // Run once initially to handle page refreshes or pre-scrolled loads
+  handleScroll();
+}
+
 const hamburgerTrigger = document.getElementById('hamburgerTrigger');
 const navOverlay = document.getElementById('navOverlay');
+const overlayCloseBtn = document.getElementById('overlayCloseBtn');
 const overlayLinks = document.querySelectorAll('.nav-overlay-links a');
+
+const closeMenu = () => {
+  if (navOverlay) navOverlay.classList.remove('open');
+  if (hamburgerTrigger) hamburgerTrigger.classList.remove('active');
+  document.body.style.overflow = '';
+};
 
 if (hamburgerTrigger && navOverlay) {
   hamburgerTrigger.addEventListener('click', () => {
     const isOpen = navOverlay.classList.toggle('open');
     hamburgerTrigger.classList.toggle('active', isOpen);
-    
-    // Toggle body scroll to prevent background scrolling
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
+}
 
-  // Close menu on link click (important for page anchor scrolling)
+if (overlayCloseBtn) {
+  overlayCloseBtn.addEventListener('click', closeMenu);
+}
+
+if (overlayLinks) {
   overlayLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navOverlay.classList.remove('open');
-      hamburgerTrigger.classList.remove('active');
-      document.body.style.overflow = '';
-    });
+    link.addEventListener('click', closeMenu);
   });
 }
 
