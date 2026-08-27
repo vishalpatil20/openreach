@@ -19,9 +19,9 @@
     <div class="bg-noise-texture"></div>
   </div>
 
-  <!-- Header Navigation -->
-  <nav style="position: sticky; top: 0; background-color: rgba(246, 243, 236, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100;">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; height: 72px;">
+    <!-- Header Navigation -->
+  <nav class="floating-nav-header">
+    <div class="container nav-container">
       <a href="/" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none; color: var(--color-ink);" aria-label="OpenReach.agency Homepage">
         <svg height="36" viewBox="0 0 1300 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; width: auto; max-width: 230px;">
           <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="var(--color-copper, #B86B43)"/>
@@ -32,18 +32,27 @@
           </text>
         </svg>
       </a>
-      <ul style="display: flex; gap: var(--space-6); list-style: none;" class="nav-links">
-        <li><a href="/how-it-works" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Methodology</a></li>
-        <li><a href="/industries" style="text-decoration: none; color: var(--color-ink); font-size: 14px; font-weight:600;">Industries</a></li>
-        <li><a href="/chatgpt-ads" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">ChatGPT Ads</a></li>
-        <li><a href="/about" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Philosophy</a></li>
-        <li><a href="/insights" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Insights</a></li>
-      </ul>
-      <div style="display: flex; align-items: center; gap: var(--space-4);">
-        <a href="/#audit-form-sec" class="btn btn-secondary" style="height: 38px; padding: 0 var(--space-3); font-size: 13px;">See Your Opportunity</a>
-      </div>
+      <button id="hamburgerTrigger" class="hamburger-btn" aria-label="Toggle Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Premium Overlay Navigation Menu -->
+  <div id="navOverlay" class="nav-overlay">
+    <div class="nav-overlay-content">
+      <ul class="nav-overlay-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">Methodology</a></li>
+        <li><a href="/industries">Industries</a></li>
+        <li><a href="/chatgpt-ads">ChatGPT Ads</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/insights">Insights</a></li>
+        <li><a href="/#audit-form-sec" class="nav-overlay-cta">Get Your Free Opportunity Check &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
 
   <!-- Header -->
   <header style="padding: var(--space-12) 0 var(--space-8) 0; background-color: var(--color-paper); border-bottom: 1px solid var(--color-border);">
@@ -73,20 +82,18 @@
         </p>
         <a href="/industries/dental" class="btn btn-secondary" style="width: 100%;">Explore Dental Feeds &rarr;</a>
       </div>
-
-      <!-- Home Services -->
+      <!-- HVAC -->
       <div class="col-6 card">
         <div class="photo-placeholder" style="margin-bottom: var(--space-3);">
           <div class="photo-placeholder-grid"></div>
-          <span class="photo-placeholder-label">Home Inspection</span>
+          <span class="photo-placeholder-label">Emergency HVAC Repair</span>
         </div>
-        <h3 class="font-h3" style="color: var(--color-forest); margin-bottom: var(--space-2);">Home Services & HVAC</h3>
+        <h3 class="font-h3" style="color: var(--color-forest); margin-bottom: var(--space-2);">HVAC & Emergency Services</h3>
         <p class="font-body-sm" style="color: var(--color-dark-gray); margin-bottom: var(--space-4);">
-          Emergency furnace failures, roofing replacements, remodel evaluations, and solar quotes.
+          AC unit failures, local repair technicians, heat pump tuning, and rapid response query matching.
         </p>
-        <a href="/industries/home-services" class="btn btn-secondary" style="width: 100%;">Explore Home Feeds &rarr;</a>
+        <a href="/industries/hvac" class="btn btn-secondary" style="width: 100%;">Explore HVAC Feeds &rarr;</a>
       </div>
-
       <!-- Automotive -->
       <div class="col-6 card">
         <div class="photo-placeholder" style="margin-bottom: var(--space-3);">

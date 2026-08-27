@@ -1537,6 +1537,172 @@ h4, .font-h4 {
   40% { transform: scale(1); }
 }
 
+/* ==========================================================================
+   16 — TRANSPARENT FLOATING NAV & HAMBURGER OVERLAY STYLES
+   ========================================================================== */
+.floating-nav-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent !important;
+  z-index: 200;
+  padding: var(--space-4) 0;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+/* Minimalist Hamburger Button */
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  z-index: 220;
+  outline: none;
+}
+
+.hamburger-line {
+  display: block;
+  height: 2px;
+  background-color: var(--color-ink);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hamburger-line:nth-child(1) {
+  width: 28px;
+}
+
+.hamburger-line:nth-child(2) {
+  width: 20px;
+}
+
+/* Hamburger active transformation to 'X' */
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+  width: 28px;
+  background-color: #F6F3EC; /* Force warm white text on overlay */
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg);
+  width: 28px;
+  background-color: #F6F3EC;
+}
+
+/* Glassmorphism Full Viewport Overlay */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(24, 52, 43, 0.96); /* Deep Forest overlay */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 210;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-overlay-content {
+  width: 100%;
+  max-width: 500px;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.nav-overlay-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: 0;
+  margin: 0;
+}
+
+.nav-overlay-links li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-overlay.open .nav-overlay-links li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cascade animations for link items */
+.nav-overlay.open .nav-overlay-links li:nth-child(1) { transition-delay: 0.1s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(2) { transition-delay: 0.15s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(3) { transition-delay: 0.20s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(4) { transition-delay: 0.25s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(5) { transition-delay: 0.30s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(6) { transition-delay: 0.35s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(7) { transition-delay: 0.40s; }
+
+.nav-overlay-links a {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: #F6F3EC;
+  text-decoration: none;
+  font-weight: 300;
+  transition: color 0.25s;
+  display: inline-block;
+}
+
+.nav-overlay-links a:hover {
+  color: var(--color-copper);
+}
+
+.nav-overlay-links .nav-overlay-cta {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #F6F3EC;
+  background-color: var(--color-copper);
+  border: 1px solid var(--color-copper);
+  border-radius: 10px;
+  padding: var(--space-3) var(--space-6);
+  margin-top: var(--space-4);
+  font-weight: 500;
+  display: inline-flex;
+}
+
+.nav-overlay-links .nav-overlay-cta:hover {
+  background-color: transparent;
+  color: #F6F3EC;
+  border-color: #F6F3EC;
+}
+
+/* Make sure mobile overlay fits correctly */
+@media (max-width: 768px) {
+  .nav-overlay-links a {
+    font-size: 1.8rem;
+  }
+}
+
+
 
 
 

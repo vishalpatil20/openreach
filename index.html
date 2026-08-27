@@ -55,9 +55,9 @@
   <div class="bg-ambient-layer">
     <div class="bg-fine-grid"></div>
     <div class="bg-noise-texture"></div>
-  </div>  <!-- Header Navigation -->
-  <nav style="position: sticky; top: 0; background-color: rgba(246, 243, 236, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 100;">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; height: 72px;">
+  </div>    <!-- Header Navigation -->
+  <nav class="floating-nav-header">
+    <div class="container nav-container">
       <a href="/" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none; color: var(--color-ink);" aria-label="OpenReach.agency Homepage">
         <svg height="36" viewBox="0 0 1300 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; width: auto; max-width: 230px;">
           <path d="M0,130 Q230,118 390,130 Q230,142 0,130 Z" fill="var(--color-copper, #B86B43)"/>
@@ -68,18 +68,42 @@
           </text>
         </svg>
       </a>
-      <ul style="display: flex; gap: var(--space-6); list-style: none;" class="nav-links">
-        <li><a href="/how-it-works" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">How It Works</a></li>
-        <li><a href="/industries" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">Industries</a></li>
-        <li><a href="/chatgpt-ads" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">ChatGPT Ads</a></li>
-        <li><a href="/about" style="text-decoration: none; color: var(--color-mid-gray); font-size: 14px; transition: color 0.2s;">About</a></li>
-      </ul>
-      <div style="display: flex; align-items: center; gap: var(--space-4);">
-        <a href="/#audit-form-sec" class="btn btn-secondary" style="height: 38px; padding: 0 var(--space-3); font-size: 13px;">Get Your Opportunity &rarr;</a>
-      </div>
+      <button id="hamburgerTrigger" class="hamburger-btn" aria-label="Toggle Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
   </nav>
-  
+
+  <!-- Premium Overlay Navigation Menu -->
+  <div id="navOverlay" class="nav-overlay">
+    <div class="nav-overlay-content">
+      <ul class="nav-overlay-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">Methodology</a></li>
+        <li><a href="/industries">Industries</a></li>
+        <li><a href="/chatgpt-ads">ChatGPT Ads</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/insights">Insights</a></li>
+        <li><a href="/#audit-form-sec" class="nav-overlay-cta">Get Your Free Opportunity Check &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Premium Overlay Navigation Menu -->
+  <div id="navOverlay" class="nav-overlay">
+    <div class="nav-overlay-content">
+      <ul class="nav-overlay-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">Methodology</a></li>
+        <li><a href="/industries">Industries</a></li>
+        <li><a href="/chatgpt-ads">ChatGPT Ads</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/insights">Insights</a></li>
+        <li><a href="/#audit-form-sec" class="nav-overlay-cta">Get Your Free Opportunity Check &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
   <!-- Hero Section -->
   <header style="padding: var(--space-12) 0 var(--space-8) 0; background-color: var(--color-paper); border-bottom: 1px solid var(--color-border);">
     <div class="container" style="max-width: 800px; text-align: center;">
@@ -187,16 +211,12 @@
       </div>
 
       <div class="card" style="padding: var(--space-5); max-width: 850px; margin: 0 auto;">
-        <div style="display: flex; justify-content: center; margin-bottom: var(--space-4);">
           <div id="simulatorTabs">
             <button class="segment-item active" data-industry="dental">Dental</button>
             <button class="segment-item" data-industry="hvac">HVAC</button>
-            <button class="segment-item" data-industry="roofing">Roofing</button>
-            <button class="segment-item" data-industry="remodeling">Remodeling</button>
             <button class="segment-item" data-industry="medspa">Med Spa</button>
             <button class="segment-item" data-industry="automotive">Automotive</button>
           </div>
-        </div>
 
         <!-- ChatGPT Simulated Chat Window -->
         <div class="chatgpt-mock-container">
@@ -352,11 +372,8 @@
                 <select id="homeIndustry" class="input-select">
                   <option>Dental</option>
                   <option>HVAC</option>
-                  <option>Roofing</option>
-                  <option>Remodeling</option>
                   <option>Med Spa</option>
                   <option>Automotive</option>
-                  <option>Solar</option>
                 </select>
               </div>
               <div class="col-6 form-group">

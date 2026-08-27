@@ -123,36 +123,7 @@ const simulatorData = {
       headline: "24/7 Emergency AC Repair & System Tuning",
       description: "Get immediate emergency response with $0 dispatch fees on your first service call. Local, licensed Austin technicians are fully stocked to fix your AC unit on the spot."
     }
-  },
-  roofing: {
-    question: "What does it cost to get a metal roof installed, and who is highly rated?",
-    organicResponse: "A residential metal roof installation generally costs between $8,000 and $22,500 depending on the square footage and specific panel style (e.g. standing seam vs. exposed fastener). Standing seam provides superior wind resistance and longevity. It is critical to hire certified installers who back their work with a wind warranty.",
-    citations: [
-      { name: "Roof Digest", url: "#" },
-      { name: "Metal Roof Org", url: "#" }
-    ],
-    sponsored: {
-      name: "Apex Roofing Specialists",
-      domain: "apexroofingtx.com",
-      logo: "A",
-      headline: "Standing Seam Metal Roofing & Storm Inspections",
-      description: "Upgrade to a premium standing seam metal roof designed to last 50+ years. Get a free inspection and details on wind insurance discounts. Licensed & local."
-    }
-  },
-  remodeling: {
-    question: "How long does a bathroom renovation take and how do I get a local quote?",
-    organicResponse: "A standard bathroom renovation typically takes 2 to 4 weeks depending on changes to plumbing layout, custom tile work, and permit approvals. To secure an accurate quote, it's best to request a detailed on-site assessment that outlines labor, fixture sourcing, and material selections.",
-    citations: [
-      { name: "Home Advisor", url: "#" },
-      { name: "Remodel Assoc.", url: "#" }
-    ],
-    sponsored: {
-      name: "Precision Remodeling",
-      domain: "precisionremodel.com",
-      logo: "P",
-      headline: "Full-Service Bathroom Renovations & Design Tours",
-      description: "Schedule a free in-home design consultation and get a complete 3D layout of your new bathroom. We handle all planning, permits, tilework, and electrical in-house."
-    }
+
   },
   medspa: {
     question: "What is the average recovery time for coolsculpting and what local clinics offer it?",
@@ -449,4 +420,31 @@ if (auditIndustrySelect) {
     }
   }
 }
+
+// ==========================================================================
+// 09 — HAMBURGER MENU OVERLAY TRIGGER CONTROLS
+// ==========================================================================
+const hamburgerTrigger = document.getElementById('hamburgerTrigger');
+const navOverlay = document.getElementById('navOverlay');
+const overlayLinks = document.querySelectorAll('.nav-overlay-links a');
+
+if (hamburgerTrigger && navOverlay) {
+  hamburgerTrigger.addEventListener('click', () => {
+    const isOpen = navOverlay.classList.toggle('open');
+    hamburgerTrigger.classList.toggle('active', isOpen);
+    
+    // Toggle body scroll to prevent background scrolling
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu on link click (important for page anchor scrolling)
+  overlayLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navOverlay.classList.remove('open');
+      hamburgerTrigger.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
 
